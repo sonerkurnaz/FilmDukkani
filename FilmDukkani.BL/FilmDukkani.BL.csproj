@@ -8,7 +8,11 @@
 
   <ItemGroup>
     <Folder Include="Abstract\" />
-    <Folder Include="Concrete\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FilmDukkani.DAL\FilmDukkani.DAL.csproj" />
+    <ProjectReference Include="..\FilmDukkani.Entities\FilmDukkani.Entities.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,9 +1,9 @@
 ﻿using FilmDukkani.Entities;
 using System.Linq.Expressions;
 
-namespace FilmDukkani.DAL.Abstract
+namespace FilmDukkani.BL.Abstract
 {
-    public interface IBaseRepository<T> where T : BaseEntity, new()
+    public interface IManagerBase<T> where T : BaseEntity, new()
     {
         int Add(T entity);
         int Update(T entity);
