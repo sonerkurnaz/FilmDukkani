@@ -1,6 +1,7 @@
 ﻿using FilmDukkani.DAL.Abstract;
 using FilmDukkani.DAL.Contexts;
 using FilmDukkani.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace FilmDukkani.DAL.Concrete
@@ -15,32 +16,44 @@ namespace FilmDukkani.DAL.Concrete
 
         public int Add(T entity)
         {
-            throw new NotImplementedException();
+            db.Set<T>().Add(entity);
+            return db.SaveChanges();
         }
 
         public int Delete(T entity)
         {
-            throw new NotImplementedException();
+            db.Set<T>().Remove(entity);
+            return db.SaveChanges();
         }
 
         public T Get(int id)
         {
-            throw new NotImplementedException();
+            return db.Set<T>().Find(id);
         }
 
         public IList<T> GetAll(Expression<Func<T, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            if (filter == null)
+            {
+                return db.Set<T>().ToList();
+            }
+            else
+            {
+                return db.Set<T>().Where(filter).ToList();
+            }
         }
 
         public IQueryable<T> GetAll(Expression<Func<T, bool>> filter = null, params Expression<Func<T, object>>[] include)
         {
-            throw new NotImplementedException();
+            var query = db.Set<T>().Where(filter);
+            return include.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+
         }
 
         public int Update(T entity)
         {
-            throw new NotImplementedException();
+            db.Set<T>().Update(entity);
+            return db.SaveChanges();
         }
     }
 }
