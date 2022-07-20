@@ -1,0 +1,17 @@
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.DAL\bin\Debug\net6.0\FilmDukkani.DAL.deps.json
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.DAL\bin\Debug\net6.0\FilmDukkani.DAL.dll
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.DAL\bin\Debug\net6.0\FilmDukkani.DAL.pdb
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.DAL\obj\Debug\net6.0\FilmDukkani.DAL.csproj.AssemblyReference.cache
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.DAL\obj\Debug\net6.0\FilmDukkani.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.DAL\obj\Debug\net6.0\FilmDukkani.DAL.AssemblyInfoInputs.cache
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.DAL\obj\Debug\net6.0\FilmDukkani.DAL.AssemblyInfo.cs
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.DAL\obj\Debug\net6.0\FilmDukkani.DAL.csproj.CoreCompileInputs.cache
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.DAL\obj\Debug\net6.0\FilmDukkani.DAL.dll
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.DAL\obj\Debug\net6.0\refint\FilmDukkani.DAL.dll
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.DAL\obj\Debug\net6.0\FilmDukkani.DAL.pdb
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.DAL\obj\Debug\net6.0\ref\FilmDukkani.DAL.dll
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.DAL\bin\Debug\net6.0\FilmDukkani.DAL.runtimeconfig.json
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.DAL\bin\Debug\net6.0\FilmDukkani.Entities.dll
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.DAL\bin\Debug\net6.0\FilmDukkani.Entities.pdb
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.DAL\obj\Debug\net6.0\FilmDukkani.DAL.csproj.CopyComplete
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.DAL\obj\Debug\net6.0\FilmDukkani.DAL.genruntimeconfig.cache

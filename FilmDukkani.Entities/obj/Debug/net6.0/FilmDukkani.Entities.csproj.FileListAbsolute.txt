@@ -1,0 +1,12 @@
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.Entities\bin\Debug\net6.0\FilmDukkani.Entities.deps.json
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.Entities\bin\Debug\net6.0\FilmDukkani.Entities.dll
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.Entities\bin\Debug\net6.0\FilmDukkani.Entities.pdb
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.Entities\obj\Debug\net6.0\FilmDukkani.Entities.csproj.AssemblyReference.cache
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.Entities\obj\Debug\net6.0\FilmDukkani.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.Entities\obj\Debug\net6.0\FilmDukkani.Entities.AssemblyInfoInputs.cache
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.Entities\obj\Debug\net6.0\FilmDukkani.Entities.AssemblyInfo.cs
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.Entities\obj\Debug\net6.0\FilmDukkani.Entities.csproj.CoreCompileInputs.cache
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.Entities\obj\Debug\net6.0\FilmDukkani.Entities.dll
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.Entities\obj\Debug\net6.0\refint\FilmDukkani.Entities.dll
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.Entities\obj\Debug\net6.0\FilmDukkani.Entities.pdb
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.Entities\obj\Debug\net6.0\ref\FilmDukkani.Entities.dll
