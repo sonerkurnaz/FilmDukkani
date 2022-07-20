@@ -14,24 +14,24 @@ namespace FilmDukkani.DAL.Concrete
             db = new SqlDbContext();
         }
 
-        public int Add(T entity)
+        public virtual int Add(T entity)
         {
             db.Set<T>().Add(entity);
             return db.SaveChanges();
         }
 
-        public int Delete(T entity)
+        public virtual int Delete(T entity)
         {
             db.Set<T>().Remove(entity);
             return db.SaveChanges();
         }
 
-        public T Get(int id)
+        public virtual T Get(int id)
         {
             return db.Set<T>().Find(id);
         }
 
-        public IList<T> GetAll(Expression<Func<T, bool>> filter = null)
+        public virtual IList<T> GetAll(Expression<Func<T, bool>> filter = null)
         {
             if (filter == null)
             {
@@ -43,14 +43,14 @@ namespace FilmDukkani.DAL.Concrete
             }
         }
 
-        public IQueryable<T> GetAll(Expression<Func<T, bool>> filter = null, params Expression<Func<T, object>>[] include)
+        public virtual IQueryable<T> GetAll(Expression<Func<T, bool>> filter = null, params Expression<Func<T, object>>[] include)
         {
             var query = db.Set<T>().Where(filter);
             return include.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
 
         }
 
-        public int Update(T entity)
+        public virtual int Update(T entity)
         {
             db.Set<T>().Update(entity);
             return db.SaveChanges();
