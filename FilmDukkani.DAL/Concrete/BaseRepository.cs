@@ -6,10 +6,10 @@ using System.Linq.Expressions;
 
 namespace FilmDukkani.DAL.Concrete
 {
-    public class RepositoryBase<T> : IBaseRepository<T> where T : BaseEntity, new()
+    public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity, new()
     {
         protected SqlDbContext db;
-        public RepositoryBase()
+        public BaseRepository()
         {
             db = new SqlDbContext();
         }
