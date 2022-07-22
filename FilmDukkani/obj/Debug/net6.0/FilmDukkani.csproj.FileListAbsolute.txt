@@ -24,3 +24,7 @@ C:\Users\soner\source\repos\FilmDukkani\FilmDukkani\obj\Debug\net6.0\refint\Film
 C:\Users\soner\source\repos\FilmDukkani\FilmDukkani\obj\Debug\net6.0\FilmDukkani.pdb
 C:\Users\soner\source\repos\FilmDukkani\FilmDukkani\obj\Debug\net6.0\FilmDukkani.genruntimeconfig.cache
 C:\Users\soner\source\repos\FilmDukkani\FilmDukkani\obj\Debug\net6.0\ref\FilmDukkani.dll
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani\obj\Debug\net6.0\FilmDukkani.csproj.CopyComplete

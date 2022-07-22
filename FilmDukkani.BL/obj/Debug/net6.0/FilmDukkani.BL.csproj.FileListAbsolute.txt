@@ -10,3 +10,8 @@ C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.BL\obj\Debug\net6.0\FilmDukk
 C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.BL\obj\Debug\net6.0\refint\FilmDukkani.BL.dll
 C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.BL\obj\Debug\net6.0\FilmDukkani.BL.pdb
 C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.BL\obj\Debug\net6.0\ref\FilmDukkani.BL.dll
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.BL\bin\Debug\net6.0\FilmDukkani.DAL.dll
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.BL\bin\Debug\net6.0\FilmDukkani.Entities.dll
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.BL\bin\Debug\net6.0\FilmDukkani.DAL.pdb
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.BL\bin\Debug\net6.0\FilmDukkani.Entities.pdb
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani.BL\obj\Debug\net6.0\FilmDukkani.BL.csproj.CopyComplete
