@@ -222,6 +222,25 @@ namespace FilmDukkani.DAL.Migrations
                     b.ToTable("Urunler");
                 });
 
+            modelBuilder.Entity("FilmDukkani.Entities.UyeIslemleri", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("MyProperty")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UyeIslemler");
+                });
+
             modelBuilder.Entity("FilmDukkani.Entities.Adres", b =>
                 {
                     b.HasOne("FilmDukkani.Entities.Kisiler", null)

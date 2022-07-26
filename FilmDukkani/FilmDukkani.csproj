@@ -16,4 +16,8 @@
     <ProjectReference Include="..\FilmDukkani.Entities\FilmDukkani.Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\DTOs\" />
+  </ItemGroup>
+
 </Project>
