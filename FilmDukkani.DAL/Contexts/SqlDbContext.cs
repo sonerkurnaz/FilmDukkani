@@ -6,10 +6,10 @@ namespace FilmDukkani.DAL.Contexts
     public class SqlDbContext : DbContext
     {
 
-        //public SqlDbContext(DbContextOptions<SqlDbContext> options) : base(options)
-        //{
+        public SqlDbContext(DbContextOptions<SqlDbContext> options) : base(options)
+        {
 
-        //}
+        }
         public SqlDbContext()
         {
 
@@ -19,10 +19,10 @@ namespace FilmDukkani.DAL.Contexts
             optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=FilmDukkan;Trusted_Connection=True;");
         }
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder);
-        //}
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
         public DbSet<Adres> Adresler { get; set; }
         public DbSet<FilmData> FilmDatalari { get; set; }
         public DbSet<Ilce> Ilceler { get; set; }
@@ -30,5 +30,7 @@ namespace FilmDukkani.DAL.Contexts
         public DbSet<Sehir> Sehirler { get; set; }
         public DbSet<Urun> Urunler { get; set; }
         public DbSet<UyeIslemleri> UyeIslemler { get; set; }
+        public DbSet<Kategori> Kategoriler { get; set; }
+
     }
 }
