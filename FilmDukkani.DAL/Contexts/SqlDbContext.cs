@@ -6,10 +6,10 @@ namespace FilmDukkani.DAL.Contexts
     public class SqlDbContext : DbContext
     {
 
-        public SqlDbContext(DbContextOptions<SqlDbContext> options) : base(options)
-        {
+        //public SqlDbContext(DbContextOptions<SqlDbContext> options) : base(options)
+        //{
 
-        }
+        //}
         public SqlDbContext()
         {
 
@@ -26,7 +26,7 @@ namespace FilmDukkani.DAL.Contexts
         public DbSet<Adres> Adresler { get; set; }
         public DbSet<FilmData> FilmDatalari { get; set; }
         public DbSet<Ilce> Ilceler { get; set; }
-        public DbSet<Kisiler> Kisiler { get; set; }
+        public DbSet<Kullanici> Kullanicilar { get; set; }
         public DbSet<Sehir> Sehirler { get; set; }
         public DbSet<Urun> Urunler { get; set; }
         public DbSet<UyeIslemleri> UyeIslemler { get; set; }

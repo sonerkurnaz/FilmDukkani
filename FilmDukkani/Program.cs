@@ -9,8 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<SqlDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("FilmDukkan")));
-builder.Services.AddScoped<IKisilerManager, KisilerManager>();
-builder.Services.AddScoped<IilceManager, IlceManager>();
+
+builder.Services.AddScoped<IKullaniciManager, KullaniciManager>();
+builder.Services.AddScoped<IKategoriManager, KategoriManager>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
