@@ -6,10 +6,10 @@ namespace FilmDukkani.DAL.Contexts
     public class SqlDbContext : DbContext
     {
 
-        //public SqlDbContext(DbContextOptions<SqlDbContext> options) : base(options)
-        //{
+        public SqlDbContext(DbContextOptions<SqlDbContext> options) : base(options)
+        {
 
-        //}
+        }
         public SqlDbContext()
         {
 
