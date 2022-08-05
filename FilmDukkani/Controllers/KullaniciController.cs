@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FilmDukkani.Models.DTOs;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FilmDukkani.Controllers
 {
@@ -6,6 +7,11 @@ namespace FilmDukkani.Controllers
     {
         public IActionResult Login()
         {
+            return View();
+        }
+        public IActionResult Register()
+        {
+            RegisterDTO dTO = new();
             return View();
         }
     }
