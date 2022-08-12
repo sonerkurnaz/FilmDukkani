@@ -1,17 +1,18 @@
-﻿@model RegisterDTO
+﻿@model UserRegisterDTO
 
 <div class="register-box">
     <div class="register-logo">
-        <a href="../../index2.html"><b>Admin</b>LTE</a>
+        <a href="../../index2.html"><b>Film</b>Dükkanı</a>
     </div>
 
     <div class="card">
         <div class="card-body register-card-body">
-            <p class="login-box-msg">Register a new membership</p>
+            <p class="login-box-msg">Yeni Üyelik</p>
 
             <form asp-action="Register" method="post">
+
                 <div class="input-group mb-3">
-                    <input asp-for="KullaniciAdi" class="form-control" placeholder="Ad Soyad">
+                    <input asp-for="Ad" class="form-control" placeholder="Ad">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -19,7 +20,24 @@
                     </div>
 
                 </div>
+                <div class="input-group mb-3">
+                    <input asp-for="Soyad" class="form-control" placeholder="Soyad">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
 
+                </div>
+                <div class="input-group mb-3">
+                    <input asp-for="KullaniciAdi" class="form-control" placeholder="Kullanıcı Adı">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+
+                </div>
                 <div class="input-group mb-3">
                     <input asp-for="Email" class="form-control" placeholder="Email">
                     <div class="input-group-append">
@@ -49,19 +67,19 @@
                         <div class="icheck-primary">
                             <input type="checkbox" id="agreeTerms" name="terms" value="agree">
                             <label for="agreeTerms">
-                                I agree to the <a href="#">terms</a>
+                                <a href="#">Şartları</a> kabul ediyorum.
                             </label>
                         </div>
                     </div>
                     <!-- /.col -->
                     <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        <button type="submit" class="btn btn-primary btn-block">Kayıt Ol</button>
                     </div>
                     <!-- /.col -->
                 </div>
             </form>
 
-            <div class="social-auth-links text-center">
+            @*<div class="social-auth-links text-center">
                 <p>- OR -</p>
                 <a href="#" class="btn btn-block btn-primary">
                     <i class="fab fa-facebook mr-2"></i>
@@ -71,9 +89,9 @@
                     <i class="fab fa-google-plus mr-2"></i>
                     Sign up using Google+
                 </a>
-            </div>
+            </div>*@
 
-            <a href="login.html" class="text-center">I already have a membership</a>
+            <a asp-action="Login" class="text-center">Üyeliğim var</a>
         </div>
         <!-- /.form-box -->
     </div><!-- /.card -->

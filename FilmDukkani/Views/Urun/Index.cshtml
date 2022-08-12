@@ -1,0 +1,28 @@
+﻿@model ICollection<Urun>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Ürün Adı</td>
+            <td>Açıklama</td>
+            <td>Adet</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.UrunAdi</td>
+                <td>@item.UrunAciklama</td>
+                <td>@item.Adet</td>
+                <td>
+                    <a class="btn btn-info" asp-action="Create">Güncelle</a>
+                    <a class="btn btn-danger" asp-action="Create">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

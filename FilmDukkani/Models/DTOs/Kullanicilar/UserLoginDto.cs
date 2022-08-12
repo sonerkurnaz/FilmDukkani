@@ -1,12 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FilmDukkani.Models.DTOs
+namespace FilmDukkani.Models.DTOs.Kullanicilar
 {
-    public class LoginDTO
+    public class UserLoginDTO
     {
         [Required]
         [MinLength(5, ErrorMessage = "Email alanı en az 5 karakter olmalıdır.")]
         [DataType(DataType.EmailAddress)]
+
         public string Email { get; set; }
         [Required]
         [DataType(DataType.Password)]

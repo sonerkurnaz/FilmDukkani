@@ -2,7 +2,7 @@
 
 namespace FilmDukkani.Models.DTOs
 {
-    public class RegisterDTO
+    public class UserRegisterDTO
     {
         [Required]
         public string Ad { get; set; }

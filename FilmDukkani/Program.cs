@@ -1,3 +1,4 @@
+using FilmDukkani.AutoMapper;
 using FilmDukkani.BL.Abstract;
 using FilmDukkani.BL.Concrete;
 using FilmDukkani.DAL.Contexts;
@@ -9,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<SqlDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("FilmDukkan")));
+builder.Services.AddAutoMapper(typeof(FilmDukkaniProfile));
 
 builder.Services.AddScoped<IKullaniciManager, KullaniciManager>();
 builder.Services.AddScoped<IKategoriManager, KategoriManager>();
