@@ -6,7 +6,7 @@ namespace FilmDukkani.Controllers
 {
     public class KullaniciController : Controller
     {
-        [HttpGet]
+        [HttpPost]
         public IActionResult Login()
         {
             return View();
@@ -14,11 +14,11 @@ namespace FilmDukkani.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            UserRegisterDTO dTO = new();
+            UserRegisterDto dTO = new();
             return View(dTO);
         }
         [HttpPost]
-        public IActionResult Register(UserRegisterDTO dTO)
+        public IActionResult Register(UserRegisterDto dTO)
         {
             if (ModelState.IsValid)
             {

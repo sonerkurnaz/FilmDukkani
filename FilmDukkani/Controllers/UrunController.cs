@@ -17,6 +17,7 @@ namespace FilmDukkani.Controllers
         }
         public IActionResult Index()
         {
+
             var UrunList = context.Urunler.ToList();
             IList<UrunListDto> urunler = mapper.Map<IList<UrunListDto>>(UrunList);
             return View(urunler);

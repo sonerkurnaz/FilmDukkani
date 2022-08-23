@@ -19,8 +19,8 @@
                 <td>@item.UrunAciklama</td>
                 <td>@item.Adet</td>
                 <td>
-                    <a class="btn btn-info" asp-action="Create">Güncelle</a>
-                    <a class="btn btn-danger" asp-action="Create">Sil</a>
+                    <a class="btn btn-info" asp-action="Update" asp-route-id="@item.Id">Güncelle</a>
+                    <a class="btn btn-danger" asp-action="Delete"asp-route-id="@item.Id">Sil</a>
                 </td>
             </tr>
         }

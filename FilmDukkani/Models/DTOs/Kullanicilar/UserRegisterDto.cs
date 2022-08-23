@@ -2,7 +2,7 @@
 
 namespace FilmDukkani.Models.DTOs
 {
-    public class UserRegisterDTO
+    public class UserRegisterDto
     {
         [Required]
         public string Ad { get; set; }
@@ -17,11 +17,13 @@ namespace FilmDukkani.Models.DTOs
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Şifre alanı zorunludur!")]
+        [MinLength(8, ErrorMessage = "Şifre min 8 karakter olmalıdır.")]
         [DataType(DataType.Password)]
         public string Sifre { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Şifre eşleşmiyor!")]
+
         [DataType(DataType.Password)]
         [Compare("Sifre")]
         public string SifreTekrar { get; set; }
