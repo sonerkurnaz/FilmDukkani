@@ -1,28 +1,41 @@
-﻿@model ICollection<Urun>
+﻿@model IList<Urun>
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <td>Id</td>
-            <td>Ürün Adı</td>
-            <td>Açıklama</td>
-            <td>Adet</td>
-            <td></td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.UrunAdi</td>
-                <td>@item.UrunAciklama</td>
-                <td>@item.Adet</td>
-                <td>
-                    <a class="btn btn-info" asp-action="Update" asp-route-id="@item.Id">Güncelle</a>
-                    <a class="btn btn-danger" asp-action="Delete"asp-route-id="@item.Id">Sil</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="col-xs-4">
+            <div class="card">
+                <img src="~/img/esaretin-bedeli-1660926263.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h2 class="card-title">Esaretin Bedeli</h2>
+                    <p class="card-text">Genç ve başarılı bir bankacı olan Andy Dufresne, karısını ve onun sevgilisini öldürmek suçundan ömür boyu hapse mahkum edilir ve Shawshank hapishanesine gönderilir. Burada başta Red olmak üzere yeni arkadaşlar edinir. Hapishane yaşamını uyum sağlamaya çalışırken diğer yandan da bilgisi ve kültürüyle etrafındaki insanları etkilemeyi başaracaktır.</p>
+                    <a href="#" class="btn btn-primary">Daha Fazla</a>
+                    <a href="#" class="btn btn-success">Kirala</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="col-xs-4">
+            <div class="card">
+                <img src="~/img/v-for-vendetta-1660915268.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h2 class="card-title">V For Vendetta</h2>
+                    <p class="card-text">Genç ve başarılı bir bankacı olan Andy Dufresne</p>
+                    <a href="#" class="btn btn-primary">Daha Fazla</a>
+                    <a href="#" class="btn btn-success">Kirala</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

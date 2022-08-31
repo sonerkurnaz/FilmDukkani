@@ -1,4 +1,5 @@
-﻿using FilmDukkani.Entities;
+﻿using FilmDukkani.BL.Abstract;
+using FilmDukkani.Entities;
 using FilmDukkani.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,6 +7,13 @@ namespace FilmDukkani.Controllers
 {
     public class KullaniciController : Controller
     {
+        private readonly IKullaniciManager manager;
+
+        public KullaniciController(IKullaniciManager manager)
+        {
+            this.manager = manager;
+        }
+
         [HttpPost]
         public IActionResult Login()
         {

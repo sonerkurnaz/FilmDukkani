@@ -29,7 +29,7 @@ namespace FilmDukkani.DAL.Contexts
         public DbSet<Kullanici> Kullanicilar { get; set; }
         public DbSet<Sehir> Sehirler { get; set; }
         public DbSet<Urun> Urunler { get; set; }
-        public DbSet<UyeIslemleri> UyeIslemler { get; set; }
+
         public DbSet<Kategori> Kategoriler { get; set; }
 
     }
