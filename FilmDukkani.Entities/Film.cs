@@ -2,6 +2,7 @@
 {
     public class Film : BaseEntity
     {
+        public byte[]? Resim { get; set; }
         public string FilmAdi { get; set; }
         public string Aciklama { get; set; }
         public string Yonetmeni { get; set; }

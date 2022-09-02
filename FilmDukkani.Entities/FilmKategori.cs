@@ -1,6 +1,6 @@
 ﻿namespace FilmDukkani.Entities
 {
-    public class FilmKategori
+    public class FilmKategori : BaseEntity
     {
         public int FilmId { get; set; }
         public Film Film { get; set; }

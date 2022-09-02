@@ -12,6 +12,7 @@
         public string KrediKartCvc { get; set; }
         public string KullaniciAdi { get; set; }
         public string Sifre { get; set; }
+        public string Role { get; set; }
 
 
         public IList<Adres> Adresler { get; set; }

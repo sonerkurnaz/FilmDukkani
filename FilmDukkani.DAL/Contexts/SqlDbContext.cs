@@ -25,12 +25,12 @@ namespace FilmDukkani.DAL.Contexts
         }
         public DbSet<Adres> Adresler { get; set; }
         public DbSet<Film> Filmler { get; set; }
-        public DbSet<Ilce> Ilceler { get; set; }
+        public DbSet<FilmKategori> FilmKategoriler { get; set; }
+        public DbSet<Kargo> Kargocular { get; set; }
+        public DbSet<Kategori> Kategoriler { get; set; }
         public DbSet<Kullanici> Kullanicilar { get; set; }
         public DbSet<Sehir> Sehirler { get; set; }
-        public DbSet<Urun> Urunler { get; set; }
 
-        public DbSet<Kategori> Kategoriler { get; set; }
 
     }
 }
