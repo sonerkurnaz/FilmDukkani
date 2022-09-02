@@ -1,7 +1,7 @@
+using FilmDukkani.AutoMapper;
 using FilmDukkani.BL.Abstract;
 using FilmDukkani.BL.Concrete;
 using FilmDukkani.DAL.Contexts;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,21 +9,23 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<SqlDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("FilmDukkan")));
-//builder.Services.AddAutoMapper(typeof(FilmDukkaniProfile));
+builder.Services.AddAutoMapper(typeof(FilmDukkaniProfile));
+
+
 
 builder.Services.AddScoped<IKullaniciManager, KullaniciManager>();
 builder.Services.AddScoped<IKategoriManager, KategoriManager>();
 
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.LoginPath = "/User/Login";
-        options.LogoutPath = "/User/Logout";
-        options.AccessDeniedPath = "/User/Yasak";
-        options.Cookie.Name = "FilmDukkan";
-        options.Cookie.HttpOnly = true;
-        options.Cookie.SameSite = SameSiteMode.Strict;
-    });
+//builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+//    .AddCookie(options =>
+//    {
+//        options.LoginPath = "/User/Login";
+//        options.LogoutPath = "/User/Logout";
+//        options.AccessDeniedPath = "/User/Yasak";
+//        options.Cookie.Name = "FilmDukkan";
+//        options.Cookie.HttpOnly = true;
+//        options.Cookie.SameSite = SameSiteMode.Strict;
+//    });
 
 var app = builder.Build();
 
