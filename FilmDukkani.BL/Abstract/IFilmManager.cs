@@ -2,7 +2,7 @@
 
 namespace FilmDukkani.BL.Abstract
 {
-    public interface IKategoriManager : IManagerBase<Kategori>
+    public interface IFilmManager : IManagerBase<Film>
     {
 
     }

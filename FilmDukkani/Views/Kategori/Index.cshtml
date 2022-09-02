@@ -1,13 +1,13 @@
 ﻿@using FilmDukkani.Models.DTOs.Kategoriler
-@model IEnumerable<Kategori>
+@model IList<Kategori>
 <a class="btn btn-primary" asp-action="Create">Yeni Kategori</a>
 <table class="table table-hover">
     <thead>
         <tr>
             
             
-            <td>@Html.DisplayNameFor(p=>p.KategoriAdi)</td>
-            <td>@Html.DisplayNameFor(p=>p.Aciklama)</td>
+            <td>Kategori Adı</td>
+            <td>Açıklama</td>
             <td></td>
         </tr>
     </thead>

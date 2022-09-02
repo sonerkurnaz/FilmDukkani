@@ -1,16 +1,18 @@
 ﻿using AutoMapper;
+using FilmDukkani.Entities;
+using FilmDukkani.Models.DTOs.Kategoriler;
 
 namespace FilmDukkani.AutoMapper
 {
     public class FilmDukkaniProfile : Profile
     {
-        //public FilmDukkaniProfile()
-        //{
-        //    CreateMap<Kategori, KategoriListDto>()
-        //        .ForMember(p => p.KategoriAdi, src => src.MapFrom(p => p.KategoriAdi))
-        //        .ForMember(p => p.Aciklama, src => src.MapFrom(p => p.Aciklama));
+        public FilmDukkaniProfile()
+        {
+            CreateMap<Kategori, KategoriListDto>();
 
 
-        //}
+
+
+        }
     }
 }

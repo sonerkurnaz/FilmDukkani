@@ -13,6 +13,7 @@ builder.Services.AddAutoMapper(typeof(FilmDukkaniProfile));
 
 
 
+
 builder.Services.AddScoped<IKullaniciManager, KullaniciManager>();
 builder.Services.AddScoped<IKategoriManager, KategoriManager>();
 

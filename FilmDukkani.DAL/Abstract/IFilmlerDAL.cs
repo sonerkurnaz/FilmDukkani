@@ -2,7 +2,8 @@
 
 namespace FilmDukkani.DAL.Abstract
 {
-    public interface IFilmlerDAL : IBaseRepository<Filmler>
+    public interface IFilmlerDAL : IBaseRepository<Film>
     {
+
     }
 }
