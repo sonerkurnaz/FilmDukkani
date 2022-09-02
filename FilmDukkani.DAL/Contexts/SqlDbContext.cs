@@ -24,7 +24,7 @@ namespace FilmDukkani.DAL.Contexts
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<Adres> Adresler { get; set; }
-        public DbSet<FilmData> FilmDatalari { get; set; }
+        public DbSet<Filmler> FilmDatalari { get; set; }
         public DbSet<Ilce> Ilceler { get; set; }
         public DbSet<Kullanici> Kullanicilar { get; set; }
         public DbSet<Sehir> Sehirler { get; set; }

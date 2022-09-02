@@ -1,6 +1,7 @@
 ﻿using FilmDukkani.BL.Abstract;
 using FilmDukkani.Entities;
 using FilmDukkani.Models.DTOs;
+using FilmDukkani.Models.DTOs.Kullanicilar;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FilmDukkani.Controllers
@@ -13,10 +14,18 @@ namespace FilmDukkani.Controllers
         {
             this.manager = manager;
         }
-
-        [HttpPost]
         public IActionResult Login()
         {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Login(UserLoginDto userLogin)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = manager.GetAll(p => p.KullaniciAdi == userLogin.KullaniciAdi && p.Sifre == userLogin.Sifre)
+                                    .FirstOrDefault();
+            }
             return View();
         }
         [HttpGet]

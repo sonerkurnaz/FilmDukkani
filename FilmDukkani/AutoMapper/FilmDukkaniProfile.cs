@@ -1,15 +1,16 @@
 ﻿using AutoMapper;
-using FilmDukkani.Entities;
-using FilmDukkani.Models.DTOs.Urunler;
 
 namespace FilmDukkani.AutoMapper
 {
     public class FilmDukkaniProfile : Profile
     {
-        public FilmDukkaniProfile()
-        {
-            CreateMap<Urun, UrunListDto>();
-            CreateMap<UrunListDto, Urun>();
-        }
+        //public FilmDukkaniProfile()
+        //{
+        //    CreateMap<Kategori, KategoriListDto>()
+        //        .ForMember(p => p.KategoriAdi, src => src.MapFrom(p => p.KategoriAdi))
+        //        .ForMember(p => p.Aciklama, src => src.MapFrom(p => p.Aciklama));
+
+
+        //}
     }
 }

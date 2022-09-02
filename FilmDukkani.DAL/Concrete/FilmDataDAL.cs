@@ -3,7 +3,7 @@ using FilmDukkani.Entities;
 
 namespace FilmDukkani.DAL.Concrete
 {
-    public class FilmDataDAL : BaseRepository<FilmData>, IFilmDataDAL
+    public class FilmDataDAL : BaseRepository<Filmler>, IFilmlerDAL
     {
     }
 }

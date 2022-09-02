@@ -1,4 +1,6 @@
 ﻿using FilmDukkani.BL.Abstract;
+using FilmDukkani.Entities;
+using FilmDukkani.Models.DTOs.Kategoriler;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FilmDukkani.Controllers
@@ -11,10 +13,16 @@ namespace FilmDukkani.Controllers
         {
             this.manager = manager;
         }
-        public IActionResult Index()
+        public IActionResult Index(KategoriListDto listDto)
         {
-            var sonuc = manager.GetAll();
-            return View(sonuc);
+
+            Kategori ktg = new();
+            ktg.KategoriAdi = listDto.KategoriAdi;
+            ktg.Aciklama = listDto.Aciklama;
+
+
+
+            return View();
         }
     }
 }
