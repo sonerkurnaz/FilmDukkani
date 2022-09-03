@@ -10,22 +10,18 @@ namespace FilmDukkani.DAL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "FilmDatalari",
+                name: "Kargocular",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FilmAdi = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Yonetmeni = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Ozeti = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    YapimYili = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AltYazilari = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Tedarikci = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirmaAdi = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TelNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FilmDatalari", x => x.Id);
+                    table.PrimaryKey("PK_Kargocular", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -59,6 +55,7 @@ namespace FilmDukkani.DAL.Migrations
                     KrediKartCvc = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     KullaniciAdi = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Sifre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -81,41 +78,31 @@ namespace FilmDukkani.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UyeIslemler",
+                name: "Filmler",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MyProperty = table.Column<int>(type: "int", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UyeIslemler", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Urunler",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UrunAdi = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UrunAciklama = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Resim = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    FilmAdi = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Aciklama = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Yonetmeni = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Ozeti = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    YapimYili = table.Column<int>(type: "int", nullable: false),
+                    AltYazilari = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Fiyat = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Adet = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    KategoriId = table.Column<int>(type: "int", nullable: false),
+                    KategoriId = table.Column<int>(type: "int", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Urunler", x => x.Id);
+                    table.PrimaryKey("PK_Filmler", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Urunler_Kategoriler_KategoriId",
+                        name: "FK_Filmler_Kategoriler_KategoriId",
                         column: x => x.KategoriId,
                         principalTable: "Kategoriler",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -124,9 +111,7 @@ namespace FilmDukkani.DAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AdresTip = table.Column<int>(type: "int", nullable: true),
                     SehirId = table.Column<int>(type: "int", nullable: true),
-                    IlceId = table.Column<int>(type: "int", nullable: true),
                     CaddeSokak = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     KullaniciId = table.Column<int>(type: "int", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -142,22 +127,28 @@ namespace FilmDukkani.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Ilceler",
+                name: "FilmKategoriler",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IlceAdi = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SehirId = table.Column<int>(type: "int", nullable: false),
+                    FilmId = table.Column<int>(type: "int", nullable: false),
+                    KategoriId = table.Column<int>(type: "int", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Ilceler", x => x.Id);
+                    table.PrimaryKey("PK_FilmKategoriler", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Ilceler_Sehirler_SehirId",
-                        column: x => x.SehirId,
-                        principalTable: "Sehirler",
+                        name: "FK_FilmKategoriler_Filmler_FilmId",
+                        column: x => x.FilmId,
+                        principalTable: "Filmler",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FilmKategoriler_Kategoriler_KategoriId",
+                        column: x => x.KategoriId,
+                        principalTable: "Kategoriler",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -168,13 +159,18 @@ namespace FilmDukkani.DAL.Migrations
                 column: "KullaniciId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ilceler_SehirId",
-                table: "Ilceler",
-                column: "SehirId");
+                name: "IX_FilmKategoriler_FilmId",
+                table: "FilmKategoriler",
+                column: "FilmId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Urunler_KategoriId",
-                table: "Urunler",
+                name: "IX_FilmKategoriler_KategoriId",
+                table: "FilmKategoriler",
+                column: "KategoriId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Filmler_KategoriId",
+                table: "Filmler",
                 column: "KategoriId");
         }
 
@@ -184,22 +180,19 @@ namespace FilmDukkani.DAL.Migrations
                 name: "Adresler");
 
             migrationBuilder.DropTable(
-                name: "FilmDatalari");
+                name: "FilmKategoriler");
 
             migrationBuilder.DropTable(
-                name: "Ilceler");
+                name: "Kargocular");
 
             migrationBuilder.DropTable(
-                name: "Urunler");
-
-            migrationBuilder.DropTable(
-                name: "UyeIslemler");
+                name: "Sehirler");
 
             migrationBuilder.DropTable(
                 name: "Kullanicilar");
 
             migrationBuilder.DropTable(
-                name: "Sehirler");
+                name: "Filmler");
 
             migrationBuilder.DropTable(
                 name: "Kategoriler");

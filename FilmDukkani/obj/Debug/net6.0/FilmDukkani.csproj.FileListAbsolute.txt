@@ -266,3 +266,4 @@ C:\Users\soner\source\repos\FilmDukkani\FilmDukkani\bin\Debug\net6.0\runtimes\wi
 C:\Users\soner\source\repos\FilmDukkani\FilmDukkani\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\soner\source\repos\FilmDukkani\FilmDukkani\bin\Debug\net6.0\AutoMapper.dll
 C:\Users\soner\source\repos\FilmDukkani\FilmDukkani\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\soner\source\repos\FilmDukkani\FilmDukkani\obj\Debug\net6.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css

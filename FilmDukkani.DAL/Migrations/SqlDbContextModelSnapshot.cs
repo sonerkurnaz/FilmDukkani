@@ -30,18 +30,12 @@ namespace FilmDukkani.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("AdresTip")
-                        .HasColumnType("int");
-
                     b.Property<string>("CaddeSokak")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("IlceId")
-                        .HasColumnType("int");
 
                     b.Property<int?>("KullaniciId")
                         .HasColumnType("int");
@@ -56,13 +50,20 @@ namespace FilmDukkani.DAL.Migrations
                     b.ToTable("Adresler");
                 });
 
-            modelBuilder.Entity("FilmDukkani.Entities.FilmData", b =>
+            modelBuilder.Entity("FilmDukkani.Entities.Film", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Aciklama")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("Adet")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("AltYazilari")
                         .IsRequired()
@@ -75,17 +76,21 @@ namespace FilmDukkani.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal?>("Fiyat")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("KategoriId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Ozeti")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Tedarikci")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("Resim")
+                        .HasColumnType("varbinary(max)");
 
-                    b.Property<string>("YapimYili")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("YapimYili")
+                        .HasColumnType("int");
 
                     b.Property<string>("Yonetmeni")
                         .IsRequired()
@@ -93,10 +98,12 @@ namespace FilmDukkani.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FilmDatalari");
+                    b.HasIndex("KategoriId");
+
+                    b.ToTable("Filmler");
                 });
 
-            modelBuilder.Entity("FilmDukkani.Entities.Ilce", b =>
+            modelBuilder.Entity("FilmDukkani.Entities.FilmKategori", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -107,18 +114,43 @@ namespace FilmDukkani.DAL.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("IlceAdi")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("FilmId")
+                        .HasColumnType("int");
 
-                    b.Property<int>("SehirId")
+                    b.Property<int>("KategoriId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SehirId");
+                    b.HasIndex("FilmId");
 
-                    b.ToTable("Ilceler");
+                    b.HasIndex("KategoriId");
+
+                    b.ToTable("FilmKategoriler");
+                });
+
+            modelBuilder.Entity("FilmDukkani.Entities.Kargo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FirmaAdi")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TelNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Kargocular");
                 });
 
             modelBuilder.Entity("FilmDukkani.Entities.Kategori", b =>
@@ -184,6 +216,10 @@ namespace FilmDukkani.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Sifre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -221,59 +257,6 @@ namespace FilmDukkani.DAL.Migrations
                     b.ToTable("Sehirler");
                 });
 
-            modelBuilder.Entity("FilmDukkani.Entities.Urun", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<decimal?>("Adet")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal?>("Fiyat")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("KategoriId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UrunAciklama")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UrunAdi")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("KategoriId");
-
-                    b.ToTable("Urunler");
-                });
-
-            modelBuilder.Entity("FilmDukkani.Entities.UyeIslemleri", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("MyProperty")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UyeIslemler");
-                });
-
             modelBuilder.Entity("FilmDukkani.Entities.Adres", b =>
                 {
                     b.HasOne("FilmDukkani.Entities.Kullanici", null)
@@ -281,41 +264,40 @@ namespace FilmDukkani.DAL.Migrations
                         .HasForeignKey("KullaniciId");
                 });
 
-            modelBuilder.Entity("FilmDukkani.Entities.Ilce", b =>
+            modelBuilder.Entity("FilmDukkani.Entities.Film", b =>
                 {
-                    b.HasOne("FilmDukkani.Entities.Sehir", "Sehir")
-                        .WithMany("Ilce")
-                        .HasForeignKey("SehirId")
+                    b.HasOne("FilmDukkani.Entities.Kategori", null)
+                        .WithMany("Filmler")
+                        .HasForeignKey("KategoriId");
+                });
+
+            modelBuilder.Entity("FilmDukkani.Entities.FilmKategori", b =>
+                {
+                    b.HasOne("FilmDukkani.Entities.Film", "Film")
+                        .WithMany()
+                        .HasForeignKey("FilmId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Sehir");
-                });
-
-            modelBuilder.Entity("FilmDukkani.Entities.Urun", b =>
-                {
                     b.HasOne("FilmDukkani.Entities.Kategori", "Kategori")
-                        .WithMany("Urunler")
+                        .WithMany()
                         .HasForeignKey("KategoriId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Film");
 
                     b.Navigation("Kategori");
                 });
 
             modelBuilder.Entity("FilmDukkani.Entities.Kategori", b =>
                 {
-                    b.Navigation("Urunler");
+                    b.Navigation("Filmler");
                 });
 
             modelBuilder.Entity("FilmDukkani.Entities.Kullanici", b =>
                 {
                     b.Navigation("Adresler");
-                });
-
-            modelBuilder.Entity("FilmDukkani.Entities.Sehir", b =>
-                {
-                    b.Navigation("Ilce");
                 });
 #pragma warning restore 612, 618
         }
