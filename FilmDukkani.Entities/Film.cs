@@ -11,6 +11,7 @@
         public string AltYazilari { get; set; }
         public decimal? Fiyat { get; set; }
         public decimal? Adet { get; set; }
+        public List<FilmKategori> FilmKategori { get; set; }
 
     }
 }

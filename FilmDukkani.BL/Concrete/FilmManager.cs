@@ -3,7 +3,7 @@ using FilmDukkani.Entities;
 
 namespace FilmDukkani.BL.Concrete
 {
-    internal class FilmManager : ManagerBase<Film>, IFilmManager
+    public class FilmManager : ManagerBase<Film>, IFilmManager
     {
     }
 }

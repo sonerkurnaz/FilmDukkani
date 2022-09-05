@@ -16,6 +16,8 @@ builder.Services.AddAutoMapper(typeof(FilmDukkaniProfile));
 
 builder.Services.AddScoped<IKullaniciManager, KullaniciManager>();
 builder.Services.AddScoped<IKategoriManager, KategoriManager>();
+builder.Services.AddScoped<IFilmManager, FilmManager>();
+
 
 //builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 //    .AddCookie(options =>
