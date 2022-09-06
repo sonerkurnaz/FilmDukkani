@@ -24,7 +24,7 @@ namespace FilmDukkani.Controllers
             
             
         }
-        public IActionResult Index()
+        public IActionResult Index(FilmListDto filmList)
         {
             
             var sonuc = manager.GetAll();

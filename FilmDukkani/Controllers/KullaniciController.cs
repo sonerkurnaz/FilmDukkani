@@ -53,21 +53,12 @@ namespace FilmDukkani.Controllers
 
             if (ModelState.IsValid)
             {
-                Kullanici kullanici = mapper.Map<Kullanici>(dTO);
-                //yeniKullanici.Adi = dTO.Ad;
-                //yeniKullanici.Soyadi = dTO.Soyad;
-                //yeniKullanici.KullaniciAdi = dTO.KullaniciAdi;
-                //yeniKullanici.Email = dTO.Email;
-                //yeniKullanici.Sifre = dTO.Sifre;
-                //yeniKullanici.Role = "User";
-
-                context.Kullanicilar.Add(kullanici);
-                context.SaveChanges();
-                return RedirectToAction("Login", "User");
-
-
+                return View(dTO);
             }
-            return View();
+            var result = mapper.Map<Kullanici>(dTO);
+            manager.Add(result);
+            return RedirectToAction("Index", "Home");
+            
         }
 
         public IActionResult ForgotPassword()

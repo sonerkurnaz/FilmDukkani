@@ -27,7 +27,7 @@ namespace FilmDukkani.Controllers
             var sonuc = manager.GetAll();            
             return View(sonuc);
         }
-        public IActionResult Create()
+        public IActionResult Create(KategoriCreateDto createDto)
         {
             return View();
         }
