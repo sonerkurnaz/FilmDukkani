@@ -1,4 +1,5 @@
-﻿@model IEnumerable<FilmListDto>
+﻿
+@model IEnumerable<Film>
 
 <a class="btn btn-primary" asp-action="Create">Film Ekle</a>
 <table class="table table-hover">
@@ -9,6 +10,8 @@
             <td>Film Adı</td>
             <td>Açıklama</td>
             <td>Yönetmen</td>
+            <td>Özet</td>
+            <td>Yapım Yılı</td>
             <td>Resim</td>
             <td></td>
 
@@ -22,7 +25,25 @@
                 <td>@item.FilmAdi</td>
                 <td>@item.Aciklama</td>
                 <td>@item.Yonetmeni</td>
-                <td>@item.Resim</td>
+                <td>@item.Ozeti</td>
+                <td>@item.YapimYili</td>
+                <td>
+                    @{
+                        byte[] photo = item.Resim;
+                        string imgSrc = null;
+                        if (photo != null)
+                        {
+
+                            MemoryStream ms = new();
+                            ms.Write(photo, 78, photo.Length - 78);
+
+                            var base64 = Convert.ToBase64String(ms.ToArray());
+                            imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                        }
+                    }
+                <td><img src="@imgSrc" class="img-tumbnail" /></td>
+                </td>
+                
                 <td>
                     <a class="btn btn-primary" asp-action="Create">Güncelle</a>
                     <a class="btn btn-primary" asp-action="Create">Sil</a>

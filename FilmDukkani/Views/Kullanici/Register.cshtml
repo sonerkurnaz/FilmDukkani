@@ -2,7 +2,7 @@
 
 <div class="register-box">
     <div class="register-logo">
-        <a href="../../index2.html"><b>Film</b>Dükkanı</a>
+        <a asp-action="Index"asp-controller="Home"><b>Film</b>Dükkanı</a>
     </div>
 
     <div class="card">
@@ -65,7 +65,7 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="icheck-primary">
-                            <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                            <input type="checkbox" id="agreeTerms" asp-for="KabulEt" value="agree">
                             <label for="agreeTerms">
                                 <a href="#">Şartları</a> kabul ediyorum.
                             </label>

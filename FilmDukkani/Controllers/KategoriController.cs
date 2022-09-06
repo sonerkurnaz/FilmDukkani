@@ -10,20 +10,26 @@ namespace FilmDukkani.Controllers
     public class KategoriController : Controller
     {
         
-        private readonly KategoriListDto listDto;
+        
         private readonly IKategoriManager manager;
-        private readonly IMapper mapper;
+        
 
-        public KategoriController(IKategoriManager manager, IMapper mapper)
+        public KategoriController(IKategoriManager manager)
         {
             this.manager = manager;
-            this.mapper = mapper;
+           
+            
             
         }
         public IActionResult Index()
         {
+            KategoriListDto kategoriList = new();
             var sonuc = manager.GetAll();            
             return View(sonuc);
+        }
+        public IActionResult Create()
+        {
+            return View();
         }
     }
 }

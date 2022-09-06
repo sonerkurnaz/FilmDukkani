@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FilmDukkani.Entities;
+using FilmDukkani.Models.DTOs;
 using FilmDukkani.Models.DTOs.Kategoriler;
 
 namespace FilmDukkani.AutoMapper
@@ -8,7 +9,8 @@ namespace FilmDukkani.AutoMapper
     {
         public FilmDukkaniProfile()
         {
-            CreateMap<Kategori, KategoriListDto>();
+            CreateMap<Kullanici, UserRegisterDto>();
+            CreateMap<UserRegisterDto,Kullanici >();
 
 
 

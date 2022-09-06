@@ -19,6 +19,7 @@ builder.Services.AddScoped<IKategoriManager, KategoriManager>();
 builder.Services.AddScoped<IFilmManager, FilmManager>();
 
 
+
 //builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 //    .AddCookie(options =>
 //    {

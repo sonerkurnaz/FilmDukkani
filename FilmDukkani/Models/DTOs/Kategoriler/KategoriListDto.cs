@@ -1,4 +1,5 @@
-﻿namespace FilmDukkani.Models.DTOs.Kategoriler
+﻿
+namespace FilmDukkani.Models.DTOs.Kategoriler
 {
     public class KategoriListDto
     {

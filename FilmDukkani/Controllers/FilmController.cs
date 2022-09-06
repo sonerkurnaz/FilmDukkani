@@ -1,26 +1,38 @@
-﻿using FilmDukkani.BL.Abstract;
+﻿using AutoMapper;
+using FilmDukkani.BL.Abstract;
 using FilmDukkani.DAL.Contexts;
 using FilmDukkani.Models.DTOs.Fimler;
+using FilmDukkani.Models.DTOs.Kategoriler;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FilmDukkani.Controllers
 {
     public class FilmController : Controller
     {
+               
         
-        private readonly IFilmManager filmManager;
+        private readonly IFilmManager manager;
+       
         
 
-        public FilmController(IFilmManager filmManager)
+        public FilmController(IFilmManager manager)
         {
             
-            this.filmManager = filmManager;
+            
+            
+            this.manager = manager;
+            
             
         }
         public IActionResult Index()
         {
-            var sonuc = filmManager.GetAllInclude();
+            
+            var sonuc = manager.GetAll();
             return View(sonuc);
+        }
+        public IActionResult Details(int id)
+        {
+            return View();
         }
     }
 }
