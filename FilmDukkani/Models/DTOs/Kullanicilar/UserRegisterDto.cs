@@ -5,9 +5,14 @@ namespace FilmDukkani.Models.DTOs
     public class UserRegisterDto
     {
         [Required]
+        [MinLength(2, ErrorMessage = "Ad alani 2'den az olamaz")]
+
         public string Ad { get; set; }
 
-        [Required]
+        
+        [Required(ErrorMessage = "Soyad alanı boş geçilemez")]
+        [StringLength(50, ErrorMessage = "Soyad alanı 50 karakterden büyük olamaz")]
+        [MinLength(2, ErrorMessage = "Soyad alanı 2'den az olamaz")]
         public string Soyad { get; set; }
 
         [Required]
@@ -18,7 +23,7 @@ namespace FilmDukkani.Models.DTOs
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Şifre alanı zorunludur!")]
-        [MinLength(8, ErrorMessage = "Şifre min 8 karakter olmalıdır.")]
+        [MinLength(8, ErrorMessage = "Şifre en az 8 karakter olmalıdır.")]
         [DataType(DataType.Password)]
         public string Sifre { get; set; }
 

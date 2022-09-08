@@ -1,0 +1,22 @@
+﻿@model Kategori
+
+
+<form asp-controller="Kategori" asp-action="Update" method="post">
+    <input type="hidden" asp-for="Id" value="@Model.Id" />
+    <div class="mb-3">
+      <label asp-for="KategoriAdi" class="form-label">Kategori Adı</label>
+      <input type="text" class="form-control" asp-for="KategoriAdi" value="@Model.KategoriAdi">
+    </div>
+
+    <div class="mb-3">
+      <label asp-for="Aciklama" class="form-label">Telefon</label>
+      <input type="text" class="form-control" asp-for="Aciklama" value="@Model.Aciklama">
+
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-success">Kaydet</button>
+        
+    </div>
+
+</form>

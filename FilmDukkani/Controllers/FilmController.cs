@@ -16,13 +16,8 @@ namespace FilmDukkani.Controllers
         
 
         public FilmController(IFilmManager manager)
-        {
-            
-            
-            
-            this.manager = manager;
-            
-            
+        {                                  
+            this.manager = manager;         
         }
         public IActionResult Index(FilmListDto filmList)
         {

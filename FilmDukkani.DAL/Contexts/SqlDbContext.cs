@@ -1,9 +1,12 @@
 ﻿using FilmDukkani.Entities;
+
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace FilmDukkani.DAL.Contexts
 {
-    public class SqlDbContext : DbContext
+    public class SqlDbContext : IdentityDbContext<AppUser>
     {
 
         public SqlDbContext(DbContextOptions<SqlDbContext> options) : base(options)
