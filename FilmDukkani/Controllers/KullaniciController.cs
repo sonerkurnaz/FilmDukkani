@@ -11,30 +11,30 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FilmDukkani.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class KullaniciController : Controller
     {
 
-        private readonly SqlDbContext context;
+        
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
         private readonly IPasswordHasher<AppUser> passwordHasher;
-        private readonly IMapper mapper;
-
+        
         public KullaniciController
-            (UserManager<AppUser> userManager,
+            (
+            UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager,
-            IPasswordHasher<AppUser> passwordHasher,
-            IMapper mapper)
+            IPasswordHasher<AppUser> passwordHasher
+            )
         {
 
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.passwordHasher = passwordHasher;
-            this.mapper = mapper;
+            
         }
         [HttpGet]
-        [AllowAnonymous]
+       // [AllowAnonymous]
         public IActionResult Login(string url)
         {
 
@@ -55,7 +55,7 @@ namespace FilmDukkani.Controllers
                         return RedirectToAction("Index", "Home");
                     }
 
-                    ModelState.AddModelError("", "Kullanici Adi yada Şifre Yanliş");
+                    ModelState.AddModelError("", "Kullanıcı adı ya da Şifre yanlış");
 
                 }
 
@@ -64,7 +64,7 @@ namespace FilmDukkani.Controllers
             return View(loginDTO);
         }
         [HttpGet]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public IActionResult Register()
         {
             UserRegisterDto dTO = new();
@@ -76,7 +76,7 @@ namespace FilmDukkani.Controllers
         {
             if (ModelState.IsValid)
             {
-                AppUser appUser = new AppUser { UserName = registerDTO.KullaniciAdi, Email = registerDTO.Email };
+                AppUser appUser = new AppUser {  UserName = registerDTO.KullaniciAdi, Email = registerDTO.Email };
 
                 var result = await userManager.CreateAsync(appUser, registerDTO.Sifre);
 
@@ -99,6 +99,40 @@ namespace FilmDukkani.Controllers
         public IActionResult ForgotPassword()
         {
             return View();
+        }
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Login");
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit()
+        {
+            var user = await userManager.FindByNameAsync(User.Identity.Name);
+
+            UserUpdateDto userUpdateDto = new UserUpdateDto(user);
+
+            return View(userUpdateDto);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(UserUpdateDto userUpdateDto)
+        {
+            if (ModelState.IsValid)
+            {
+                AppUser user = await userManager.FindByNameAsync(User.Identity.Name);
+                user.UserName = userUpdateDto.KullaniciAdi;
+                if (userUpdateDto.Sifre != null)
+                {
+                    user.PasswordHash = passwordHasher.HashPassword(user, userUpdateDto.Sifre);
+                }
+                var result = await userManager.UpdateAsync(user);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            return View(userUpdateDto);
         }
     }
 }

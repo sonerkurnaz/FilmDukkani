@@ -60,12 +60,12 @@ namespace FilmDukkani.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Resim = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
-                    FilmAdi = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Aciklama = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Yonetmeni = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Ozeti = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FilmAdi = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Aciklama = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Yonetmeni = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Ozeti = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     YapimYili = table.Column<int>(type: "int", nullable: false),
-                    AltYazilari = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AltYazilari = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Fiyat = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Adet = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -97,7 +97,7 @@ namespace FilmDukkani.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     KategoriAdi = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Aciklama = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Aciklama = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>

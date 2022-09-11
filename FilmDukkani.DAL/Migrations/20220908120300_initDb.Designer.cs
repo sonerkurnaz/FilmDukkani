@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilmDukkani.DAL.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    [Migration("20220907112823_initDb")]
+    [Migration("20220908120300_initDb")]
     partial class initDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -141,28 +141,24 @@ namespace FilmDukkani.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Aciklama")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("Adet")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("AltYazilari")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FilmAdi")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("Fiyat")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Ozeti")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Resim")
@@ -172,7 +168,6 @@ namespace FilmDukkani.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Yonetmeni")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -239,7 +234,6 @@ namespace FilmDukkani.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Aciklama")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreateDate")

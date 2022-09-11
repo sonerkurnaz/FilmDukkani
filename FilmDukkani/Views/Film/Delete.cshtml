@@ -1,0 +1,23 @@
+﻿@model Film
+
+<form asp-controller="Film" asp-action="Delete" method="post">
+    
+    <div class="mb-3">
+        <label asp-for="FilmAdi" class="form-label">Film Adı</label>
+        <input type="text" class="form-control" asp-for="FilmAdi" readonly>
+    </div>
+    <input type="hidden" asp-for="Id" />
+    <div class="mb-3">
+        <label asp-for="Resim" class="form-label">Resim</label>
+        <input type="text" class="form-control" asp-for="Resim" readonly>
+
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-danger">Sil</button>
+    </div>
+    <div class="mb-3">
+        <a class="btn btn-info" asp-action="Index" asp-controller="Film">Vazgeç</a>
+    </div>
+
+</form>

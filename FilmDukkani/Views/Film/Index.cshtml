@@ -1,55 +1,83 @@
-﻿
-@model IEnumerable<FilmListDto>
+﻿@model IEnumerable<Film>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
-<a class="btn btn-primary" asp-action="Create">Film Ekle</a>
-<table class="table table-hover">
-    <thead>
-        <tr>
 
+</head>
+<body>
+    <header>
+        <jumbotron></jumbotron>
+    </header>
 
-            <td>Film Adı</td>
-            <td>Açıklama</td>
-            <td>Yönetmen</td>
-            <td>Özet</td>
-            <td>Yapım Yılı</td>
-            <td>Resim</td>
-            <td></td>
+    <main></main>
 
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table class="table table-success table-striped-columns">
+        <thead>
             <tr>
 
-                <td>@item.FilmAdi</td>
-                <td>@item.Aciklama</td>
-                <td>@item.Yonetmeni</td>
-                <td>@item.Ozeti</td>
-                <td>@item.YapimYili</td>
-                <td>
-                    @{
-                        byte[] photo = item.Resim;
-                        string imgSrc = null;
-                        if (photo != null)
-                        {
-
-                            MemoryStream ms = new();
-                            ms.Write(photo, 78, photo.Length - 78);
-
-                            var base64 = Convert.ToBase64String(ms.ToArray());
-                            imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-                        }
-                    }
-                <td><img src="@imgSrc" class="img-tumbnail" /></td>
-                </td>
-                
-                <td>
-                    <a class="btn btn-primary" asp-action="Update">Güncelle</a>
-                    <a class="btn btn-primary" asp-action="Delete">Sil</a>
-                </td>
+                <th>Id</th>
+                <th>Film Adı</th>
+                <th>Açıklama</th>
+                <th>Yönetmen</th>
+                <th>Yapım</th>
+                <th>Resim</th>
+                <td></td>
+                <td></td>
 
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.FilmAdi</td>
+                    <td>@item.Aciklama</td>
+                    <td>@item.Yonetmeni</td>
+                    <td>@item.YapimYili</td>
+
+                    <td>
+                        @{
+                            byte[] photo = item.Resim;
+                            string imgSrc = null;
+                            if (photo != null)
+                            {
+
+                                MemoryStream ms = new();
+                                ms.Write(photo, 78, photo.Length - 78);
+
+                                var base64 = Convert.ToBase64String(ms.ToArray());
+                                imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                            }
+                        }
+                        <img src="@imgSrc" class="img-tumbnail" />
+                    </td>
+                    @*@if (User.Identity.IsAuthenticated == true)
+                {*@
+                    <td>
+                        <a class="btn btn-outline-success"
+                       asp-controller="Film"
+                       asp-route-id="@item.Id"
+                       asp-action="Update">Güncelle</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-danger"
+                       asp-controller="Film"
+                       asp-route-id="@item.Id"
+                       asp-action="Delete">Sil</a>
+                    </td>
+                    @*}*@
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a class="btn btn-primary float-right" asp-action="Create">Film Ekle</a>
+</body>
+</html>

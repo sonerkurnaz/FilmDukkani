@@ -1,18 +1,19 @@
-﻿@model KategoriCreateDto
+﻿@model FilmDukkani.Models.DTOs.Kategoriler.KategoriCreateDto
 <form asp-controller="Kategori" asp-action="Create" method="post">
     <div class="mb-3">
-        <label asp-for="KategoriAdi" class="form-label">Kategori Adı</label>
+        <label asp-for="KategoriAdi" class="form-label">@Model.KategoriAdi</label>
         <input type="text" class="form-control" asp-for="KategoriAdi">
     </div>
 
     <div class="mb-3">
-        <label asp-for="Aciklama" class="form-label">Açıklama</label>
+        <label asp-for="Aciklama" class="form-label">@Model.Aciklama</label>
         <input type="text" class="form-control" asp-for="Aciklama">
 
     </div>
 
     <div class="mb-3">
-        <button type="submit" class="btn btn-primary">Kaydet</button>
+        <button type="submit" class="btn btn-primary float-right">Kaydet</button>
+        <a class="btn btn-danger float-right" asp-action="Index" asp-controller="Kategori">Geri Dön</a>
     </div>
 
 </form>

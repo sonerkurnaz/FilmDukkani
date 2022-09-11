@@ -9,64 +9,63 @@ namespace FilmDukkani.Controllers
 {
     public class KategoriController : Controller
     {
-        
-        
+
+
         private readonly IKategoriManager manager;
         private readonly SqlDbContext context;
         private readonly IMapper mapper;
 
-        public KategoriController(IKategoriManager manager,SqlDbContext context,IMapper mapper)
+        public KategoriController(IKategoriManager manager, SqlDbContext context, IMapper mapper)
         {
             this.manager = manager;
             this.context = context;
             this.mapper = mapper;
-            
+
         }
 
-        public IActionResult Index()
+        public IActionResult Index(KategoriListDto dto)
         {
-            KategoriListDto kategoriList = new();
-            var sonuc = manager.GetAll();            
+            var sonuc = manager.GetAll();
             return View(sonuc);
         }
         #region Create
 
-        
 
-        public IActionResult Create()
+
+        public IActionResult Create(KategoriCreateDto createDto)
         {
-            KategoriCreateDto createDto = new();
+
             return View(createDto);
         }
         [HttpPost]
-        public IActionResult Create(KategoriCreateDto kategori)
+        public IActionResult Create(Kategori kategori)
         {
-                
+            if (ModelState.IsValid)
+            {
                 context.Kategoriler.Add(kategori);
                 context.SaveChanges();
-                return RedirectToAction("Index");
+            }
 
 
-
-            return View(kategori);
+            return RedirectToAction("Index");
         }
         #endregion
         #region Delete
 
-        
+
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var shipper = context.Kategoriler.Find(id);
-            return View(shipper);
+            var result = context.Kategoriler.Find(id);
+            return View(result);
         }
 
         [HttpPost]
         public IActionResult Delete(Kategori kategori)
         {
-            var removeShipper = context.Kategoriler.FirstOrDefault(p => p.Id == kategori.Id);
+            var remove = context.Kategoriler.FirstOrDefault(p => p.Id == kategori.Id);
 
-            context.Remove(kategori);
+            manager.Delete(kategori);
             context.SaveChanges();
             return RedirectToAction("Index");
 
@@ -76,13 +75,14 @@ namespace FilmDukkani.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            Kategori shipper = context.Kategoriler.Find(id);
-            return View(shipper);
+            Kategori kategori = context.Kategoriler.Find(id);
+            return View(kategori);
         }
 
         [HttpPost]
         public IActionResult Update(Kategori kategori)
         {
+
             context.Update(kategori);
             context.SaveChanges();
             return RedirectToAction("Index");

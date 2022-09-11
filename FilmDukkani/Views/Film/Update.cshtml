@@ -1,0 +1,36 @@
+﻿@model Film
+<form asp-controller="Film" asp-action="Update" method="post">
+
+
+    <div class="mb-3">
+        <label asp-for="FilmAdi" class="form-label">Film Adı</label>
+        <input type="text" class="form-control" asp-for="FilmAdi">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Aciklama" class="form-label">Konu</label>
+        <input type="text" class="form-control" asp-for="Aciklama">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Yonetmeni" class="form-label">Yönetmen</label>
+        <input type="text" class="form-control" asp-for="Yonetmeni">
+    </div>
+    <div class="mb-3">
+        <label asp-for="YapimYili" class="form-label">Yapım Yılı</label>
+        <input type="datetime" class="form-control"
+               asp-for="YapimYili">
+    </div>
+    
+    <div class="mb-3">
+        <label asp-for="Resim" class="form-label">Resim</label>
+        <input type="file" class="form-control" asp-for="Resim">
+    </div>
+    
+    
+    
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-outline-primary">Kaydet</button>
+        <a class="btn btn-outline-danger" asp-action="Index" asp-controller="Film">Geri Dön</a>
+    </div>
+
+</form>

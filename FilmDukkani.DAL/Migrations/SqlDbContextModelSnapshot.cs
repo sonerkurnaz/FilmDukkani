@@ -139,28 +139,24 @@ namespace FilmDukkani.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Aciklama")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("Adet")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("AltYazilari")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FilmAdi")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("Fiyat")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Ozeti")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Resim")
@@ -170,7 +166,6 @@ namespace FilmDukkani.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Yonetmeni")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -242,16 +237,11 @@ namespace FilmDukkani.DAL.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FilmId")
-                        .HasColumnType("int");
-
                     b.Property<string>("KategoriAdi")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("FilmId");
 
                     b.ToTable("Kategoriler");
                 });
@@ -493,17 +483,6 @@ namespace FilmDukkani.DAL.Migrations
                     b.Navigation("Film");
 
                     b.Navigation("Kategori");
-                });
-
-            modelBuilder.Entity("FilmDukkani.Entities.Kategori", b =>
-                {
-                    b.HasOne("FilmDukkani.Entities.Film", "Film")
-                        .WithMany()
-                        .HasForeignKey("FilmId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Film");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
