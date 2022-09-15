@@ -1,4 +1,4 @@
-﻿@model Film
+﻿@model FilmUpdateDto
 <form asp-controller="Film" asp-action="Update" method="post">
 
 
@@ -21,8 +21,8 @@
     </div>
     
     <div class="mb-3">
-        <label asp-for="Resim" class="form-label">Resim</label>
-        <input type="file" class="form-control" asp-for="Resim">
+        <label asp-for="PhotoUrl" class="form-label">Resim</label>
+        <input type="file" class="form-control" asp-for="PhotoUrl">
     </div>
     
     

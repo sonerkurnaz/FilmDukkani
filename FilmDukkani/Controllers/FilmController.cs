@@ -15,7 +15,6 @@ namespace FilmDukkani.Controllers
 
         private readonly IFilmManager manager;
         private readonly SqlDbContext context;
-
         private readonly IMapper mapper;
 
         public FilmController(IFilmManager manager, SqlDbContext context, IMapper mapper)
@@ -24,12 +23,11 @@ namespace FilmDukkani.Controllers
             this.context = context;
             this.mapper = mapper;
         }
-        public IActionResult Index(FilmListDto listDto)
+        public IActionResult Index(FilmListDto dto)
         {
-            Film film = mapper.Map<Film>(listDto);
-
-            var sonuc = manager.GetAll();
-            return View(sonuc);
+            Film film = mapper.Map<Film>(dto);
+            manager.GetAll();
+            return View(film);
         }
         public IActionResult Create()
         {
@@ -37,14 +35,14 @@ namespace FilmDukkani.Controllers
             return View(createDto);
         }
         [HttpPost]
-        public IActionResult Create(Film film)
+        public IActionResult Create(FilmCreateDto filmCreate)
         {
-
-            context.Filmler.Add(film);
+            var sonuc = mapper.Map<Film>(filmCreate);
+            manager.Add(sonuc);
             context.SaveChanges();
             return RedirectToAction("Index");
 
-            return View(film);
+            
         }
         [HttpGet]
         public IActionResult Update(int id)
@@ -59,10 +57,6 @@ namespace FilmDukkani.Controllers
             context.SaveChanges();
             return RedirectToAction("Index");
 
-
-
-
-
         }
 
         public async Task<IActionResult> Delete(int? id)
@@ -73,7 +67,7 @@ namespace FilmDukkani.Controllers
             }
 
             var film = await context.Filmler
-                .Include(p => p.FilmKategori)
+                .Include(p => p.FilmKategorileri)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (film == null)
             {
@@ -82,6 +76,7 @@ namespace FilmDukkani.Controllers
 
             return View(film);
         }
+        [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
             if (context.Filmler == null)
@@ -97,11 +92,7 @@ namespace FilmDukkani.Controllers
             await context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
         
-        public IActionResult Details(int id)
-        {
-            Film film = context.Filmler.Find(id);
-            return View(film);
-        }
     }
 }

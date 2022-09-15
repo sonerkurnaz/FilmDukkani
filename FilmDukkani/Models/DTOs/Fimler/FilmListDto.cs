@@ -8,7 +8,7 @@ namespace FilmDukkani.Models.DTOs.Fimler
     {
         public int Id { get; set; }
 
-        public byte[]? Resim { get; set; }
+        
         [Display(Name = "Film Adı")]
         public string FilmAdi { get; set; }
         [Display(Name = "Açıklama")]

@@ -1,9 +1,9 @@
-﻿@model Kategori
+﻿@model KategoriUpdateDto
 
 
 <form asp-controller="Kategori" asp-action="Update" method="post">
-    <input type="hidden" asp-for="Id" value="@Model.Id" />
-    <div class="mb-3">
+    @*<input type="hidden" asp-for="Id" value="@Model.Id" />
+    <div class="mb-3">*@
       <label asp-for="KategoriAdi" class="form-label">Kategori Adı</label>
       <input type="text" class="form-control" asp-for="KategoriAdi" value="@Model.KategoriAdi">
     </div>

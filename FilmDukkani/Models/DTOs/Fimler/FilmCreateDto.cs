@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FilmDukkani.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace FilmDukkani.Models.DTOs.Fimler
 {
@@ -6,7 +7,7 @@ namespace FilmDukkani.Models.DTOs.Fimler
     {
         public int Id { get; set; }
         
-        public byte[]? Resim { get; set; }
+        
         [Required]
         [Display(Name ="Film Adı")]
         public string FilmAdi { get; set; }
@@ -17,5 +18,8 @@ namespace FilmDukkani.Models.DTOs.Fimler
         [Display(Name = "Yapım Yılı")]
         public int YapimYili { get; set; }
         public decimal? Fiyat { get; set; }
+        public Fotograf? Fotograf { get; set; }
+
+        public IFormFile PhotoUrl { get; set; }
     }
 }

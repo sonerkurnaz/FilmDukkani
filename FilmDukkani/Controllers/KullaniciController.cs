@@ -5,36 +5,35 @@ using FilmDukkani.DAL.Contexts;
 using FilmDukkani.Entities;
 using FilmDukkani.Models.DTOs;
 using FilmDukkani.Models.DTOs.Kullanicilar;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace FilmDukkani.Controllers
 {
     //[Authorize]
     public class KullaniciController : Controller
     {
+        private readonly IKullaniciManager manager;
+        private readonly IMapper mapper;
+        private readonly SqlDbContext context;
 
-        
-        private readonly UserManager<AppUser> userManager;
-        private readonly SignInManager<AppUser> signInManager;
-        private readonly IPasswordHasher<AppUser> passwordHasher;
-        
         public KullaniciController
             (
-            UserManager<AppUser> userManager,
-            SignInManager<AppUser> signInManager,
-            IPasswordHasher<AppUser> passwordHasher
+            IKullaniciManager manager,
+            IMapper mapper,
+            SqlDbContext context
+            
             )
         {
-
-            this.userManager = userManager;
-            this.signInManager = signInManager;
-            this.passwordHasher = passwordHasher;
-            
+            this.manager = manager;
+            this.mapper = mapper;
+            this.context = context;
         }
-        [HttpGet]
-       // [AllowAnonymous]
+
+        // [AllowAnonymous]
         public IActionResult Login(string url)
         {
 
@@ -45,54 +44,53 @@ namespace FilmDukkani.Controllers
         {
             if (ModelState.IsValid)
             {
-                AppUser user = await userManager.FindByNameAsync(loginDTO.KullaniciAdi);
-                if (user != null)
-                {
-                    var signInResult = await signInManager.PasswordSignInAsync(user, loginDTO.Sifre, false, false);
+                Kullanici kullanici=mapper.Map<Kullanici>(loginDTO);
+                var user = manager.GetAll(p => p.KullaniciAdi == loginDTO.KullaniciAdi && p.Sifre == loginDTO.Sifre)
+                                    .FirstOrDefault();
 
-                    if (signInResult.Succeeded)
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                //if (user != null)
+                //{
+                //    var claims = new List<Claim>
+                //    {
+                //        new Claim(ClaimTypes.Name,user.KullaniciAdi),
+                //        new Claim(ClaimTypes.Email,user.Email),
+                       
+                //    };
 
-                    ModelState.AddModelError("", "Kullanıcı adı ya da Şifre yanlış");
+                //    var userIdentity = new ClaimsIdentity(claims, "login");
+                //    ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
+                //    await HttpContext.SignInAsync(principal);
 
-                }
+                //    return RedirectToAction("Index", "Home");
+                //}
+
 
             }
 
             return View(loginDTO);
         }
-        [HttpGet]
+
+
         //[AllowAnonymous]
         public IActionResult Register()
         {
             UserRegisterDto dTO = new();
             return View(dTO);
         }
-        [HttpPost, ValidateAntiForgeryToken, AllowAnonymous]
 
-        public async Task<IActionResult> Register(UserRegisterDto registerDTO)
+        [HttpPost]
+        public IActionResult Register(UserRegisterDto registerDTO)
         {
+           
             if (ModelState.IsValid)
             {
-                AppUser appUser = new AppUser {  UserName = registerDTO.KullaniciAdi, Email = registerDTO.Email };
-
-                var result = await userManager.CreateAsync(appUser, registerDTO.Sifre);
-
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("Login");
-                }
-                else
-                {
-                    foreach (var item in result.Errors)
-                    {
-                        ModelState.AddModelError("", item.Description);
-                    }
-                }
+                Kullanici kullanici = mapper.Map<Kullanici>(registerDTO);
+                manager.Add(kullanici);
+                context.SaveChanges();
+                
+                
+                
             }
-
             return View(registerDTO);
         }
 
@@ -102,37 +100,28 @@ namespace FilmDukkani.Controllers
         }
         public async Task<IActionResult> Logout()
         {
-            await signInManager.SignOutAsync();
-            return RedirectToAction("Login");
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
         [HttpGet]
-        public async Task<IActionResult> Edit()
+        public IActionResult Edit(UserUpdateDto updateDto)
         {
-            var user = await userManager.FindByNameAsync(User.Identity.Name);
+            var user = mapper.Map<Kullanici>(updateDto);
 
-            UserUpdateDto userUpdateDto = new UserUpdateDto(user);
 
-            return View(userUpdateDto);
+
+            return View(user);
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(UserUpdateDto userUpdateDto)
+        public IActionResult Edit()
         {
-            if (ModelState.IsValid)
-            {
-                AppUser user = await userManager.FindByNameAsync(User.Identity.Name);
-                user.UserName = userUpdateDto.KullaniciAdi;
-                if (userUpdateDto.Sifre != null)
-                {
-                    user.PasswordHash = passwordHasher.HashPassword(user, userUpdateDto.Sifre);
-                }
-                var result = await userManager.UpdateAsync(user);
+            UserUpdateDto userUpdateDto = new UserUpdateDto();
+            var result = mapper.Map<Kullanici>(userUpdateDto);
+            manager.Update(result);
+            context.SaveChanges();
+            return RedirectToAction("Index");
 
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-            }
-            return View(userUpdateDto);
+
         }
     }
 }

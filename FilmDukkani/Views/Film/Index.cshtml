@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Film>
+﻿@model IList<FilmListDto>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,8 +26,8 @@
                 <th>Yönetmen</th>
                 <th>Yapım</th>
                 <th>Resim</th>
-                <td></td>
-                <td></td>
+                @*<td></td>*@
+                
 
             </tr>
         </thead>
@@ -41,23 +41,38 @@
                     <td>@item.Yonetmeni</td>
                     <td>@item.YapimYili</td>
 
-                    <td>
+                    @*<td>
                         @{
-                            byte[] photo = item.Resim;
+                            byte[]? photo;
                             string imgSrc = null;
-                            if (photo != null)
+                            if (item.Fotograflar.Count > 0)
                             {
+                                foreach (var resim in item.Fotograflar)
+                                {
+                                    photo = resim.Foto;
 
-                                MemoryStream ms = new();
-                                ms.Write(photo, 78, photo.Length - 78);
+                                    if (photo != null)
+                                    {
+                                        try
+                                        {
+                                            MemoryStream ms = new();
+                                            ms.Write(photo, 78, photo.Length - 78);
+                                            var base64 = Convert.ToBase64String(ms.ToArray());
+                                            imgSrc = String.Format("data:image/gif;base64,{0}", base64);
 
-                                var base64 = Convert.ToBase64String(ms.ToArray());
-                                imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                        }
+                                    }
+
+
+                                }
                             }
                         }
-                        <img src="@imgSrc" class="img-tumbnail" />
-                    </td>
-                    @*@if (User.Identity.IsAuthenticated == true)
+
+                    <td><img src="@imgSrc" class="img-tumbnail" /></td>*@
+                        @*@if (User.Identity.IsAuthenticated == true)
                 {*@
                     <td>
                         <a class="btn btn-outline-success"
@@ -71,7 +86,7 @@
                        asp-route-id="@item.Id"
                        asp-action="Delete">Sil</a>
                     </td>
-                    @*}*@
+                        @*}*@
 
 
                 </tr>

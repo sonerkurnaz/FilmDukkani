@@ -29,11 +29,6 @@ namespace FilmDukkani.Models.DTOs.Kullanicilar
         public string Sifre { get; set; }
         [Display(Name = "Adres")]
         public IList<Adres> Adresler { get; set; }
-        public UserUpdateDto(AppUser user)
-        {
-            KullaniciAdi = user.UserName;
-            Sifre = user.PasswordHash;
-            Email = user.Email;
-        }
+        
     }
 }

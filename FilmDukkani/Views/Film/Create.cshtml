@@ -1,4 +1,4 @@
-﻿@model FilmDukkani.Models.DTOs.Fimler.FilmCreateDto
+﻿@model FilmCreateDto
 <form asp-controller="Film" asp-action="Create" method="post">
     <div class="mb-3">
         <label asp-for="FilmAdi" class="form-label">Film Adı</label>
@@ -13,13 +13,13 @@
         <input type="text" class="form-control" asp-for="Yonetmeni">
     </div>
     <div class="mb-3">
-        <label asp-for="YapimYili" class="form-label">@Html.DisplayNameFor(p=>p.YapimYili)</label>
+        <label asp-for="YapimYili" class="form-label">Yapım</label>
         <input type="datetime" class="form-control" asp-for="YapimYili">
     </div>
     
     <div class="mb-3">
-        <label asp-for="Resim" class="form-label">Resim</label>
-        <input type="image" class="form-control" asp-for="Resim">
+        <label asp-for="PhotoUrl" class="form-label">Resim</label>
+        <input type="image" class="form-control" asp-for="PhotoUrl">
     </div>
 
     <div class="mb-3">

@@ -7,7 +7,7 @@ namespace FilmDukkani.Models.DTOs.Fimler
     public class FilmUpdateDto
     {
         public int Id { get; set; }
-        public byte[]? Resim { get; set; }
+        
         [Display(Name = "Film Adı")]
         public string? FilmAdi { get; set; }
         [Display(Name = "Açıklama")]
@@ -25,5 +25,8 @@ namespace FilmDukkani.Models.DTOs.Fimler
         [Display(Name = "Adet")]
         public decimal? Adet { get; set; }
         public List<FilmKategori> FilmKategori { get; set; }
+        public Fotograf? Fotograf { get; set; }
+
+        public IFormFile PhotoUrl { get; set; }
     }
 }

@@ -7,13 +7,13 @@ namespace FilmDukkani.Models.DTOs
         [Required(ErrorMessage ="Zorunlu Alan.")]
         [MinLength(2, ErrorMessage = "Ad alani 2'den az olamaz")]
         [Display(Name = "Ad")]
-        public string Ad { get; set; }
+        public string Adi { get; set; }
        
         [Required(ErrorMessage = "Soyad alanı boş geçilemez")]
         [StringLength(50, ErrorMessage = "Soyad alanı 50 karakterden büyük olamaz")]
         [MinLength(2, ErrorMessage = "Soyad alanı 2'den az olamaz")]
         [Display(Name = "Soyad")]
-        public string Soyad { get; set; }
+        public string Soyadi { get; set; }
 
         [Required]
         [Display(Name = "Kullanıcı Adı")]
@@ -36,7 +36,7 @@ namespace FilmDukkani.Models.DTOs
         [Compare("Sifre")]
         public string SifreTekrar { get; set; }
 
-        [Required]
+        
         [Display(Name = "Kabul Et")]
         public bool KabulEt { get; set; }
 

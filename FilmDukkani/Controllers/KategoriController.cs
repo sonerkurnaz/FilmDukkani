@@ -25,26 +25,27 @@ namespace FilmDukkani.Controllers
 
         public IActionResult Index(KategoriListDto dto)
         {
-            var sonuc = manager.GetAll();
-            return View(sonuc);
+            Kategori kategori = mapper.Map<Kategori>(dto);
+            manager.GetAll();
+           // context.SaveChanges();
+            return View(kategori);
         }
         #region Create
 
 
 
-        public IActionResult Create(KategoriCreateDto createDto)
+        public IActionResult Create(KategoriListDto listDto)
         {
 
-            return View(createDto);
+            return View(listDto);
         }
         [HttpPost]
-        public IActionResult Create(Kategori kategori)
+        public IActionResult Create(KategoriCreateDto createDto)
         {
-            if (ModelState.IsValid)
-            {
-                context.Kategoriler.Add(kategori);
-                context.SaveChanges();
-            }
+            Kategori kategori = mapper.Map<Kategori>(createDto);
+            manager.Add(kategori);
+            context.SaveChanges();
+
 
 
             return RedirectToAction("Index");
@@ -80,10 +81,10 @@ namespace FilmDukkani.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update(Kategori kategori)
+        public IActionResult Update(KategoriUpdateDto updateDto)
         {
-
-            context.Update(kategori);
+            Kategori kategori = mapper.Map<Kategori>(updateDto);
+            manager.Update(kategori);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
