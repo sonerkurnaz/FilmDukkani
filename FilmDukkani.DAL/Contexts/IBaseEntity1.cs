@@ -1,6 +1,12 @@
-﻿namespace FilmDukkani
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FilmDukkani.DAL.Contexts
 {
-    public interface IBaseEntity
+    public interface IBaseEntity1
     {
         public enum Status
         {

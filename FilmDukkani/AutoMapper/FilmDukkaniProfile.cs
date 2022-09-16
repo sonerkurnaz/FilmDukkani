@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FilmDukkani.Entities;
 using FilmDukkani.Models.DTOs;
+using FilmDukkani.Models.DTOs.Adresler;
 using FilmDukkani.Models.DTOs.Fimler;
 using FilmDukkani.Models.DTOs.Kategoriler;
 using FilmDukkani.Models.DTOs.Kullanicilar;
@@ -43,6 +44,14 @@ namespace FilmDukkani.AutoMapper
 
             CreateMap<FilmUpdateDto, Film>();
             CreateMap<Film, FilmUpdateDto>();
+            #endregion
+
+            #region Adres
+            CreateMap<AdresCreateDto, Adres>();
+            CreateMap<Adres, AdresCreateDto>();
+
+            CreateMap<AdresUpdateDto, Adres>();
+            CreateMap<Adres, AdresUpdateDto>();
             #endregion
         }
     }

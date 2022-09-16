@@ -6,6 +6,7 @@ using FilmDukkani.Models.DTOs.Fimler;
 using FilmDukkani.Models.DTOs.Kategoriler;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 
 namespace FilmDukkani.Controllers
 {
@@ -16,33 +17,55 @@ namespace FilmDukkani.Controllers
         private readonly IFilmManager manager;
         private readonly SqlDbContext context;
         private readonly IMapper mapper;
+        private readonly IWebHostEnvironment hostEnvironment;
 
-        public FilmController(IFilmManager manager, SqlDbContext context, IMapper mapper)
+        public FilmController(IFilmManager manager, SqlDbContext context, IMapper mapper, IWebHostEnvironment hostEnvironment)
         {
             this.manager = manager;
             this.context = context;
             this.mapper = mapper;
+            this.hostEnvironment = hostEnvironment;
         }
         public IActionResult Index(FilmListDto dto)
         {
             Film film = mapper.Map<Film>(dto);
-            manager.GetAll();
-            return View(film);
+
+
+            var sonuc = manager.GetAll();
+            return View(sonuc);
         }
         public IActionResult Create()
         {
-            FilmCreateDto createDto = new();
-            return View(createDto);
+            var film = new FilmCreateDto();
+            return View(film);
         }
         [HttpPost]
-        public IActionResult Create(FilmCreateDto filmCreate)
+        public IActionResult Create(FilmCreateDto createDto)
         {
-            var sonuc = mapper.Map<Film>(filmCreate);
+            var sonuc = mapper.Map<Film>(createDto);
+
             manager.Add(sonuc);
             context.SaveChanges();
+
+            //Fotograf foto = new Fotograf();
+
+            //string wwwrootPath = hostEnvironment.WebRootPath;
+
+            //string fileName = Path.GetFileNameWithoutExtension(createDto.PhotoUrl.FileName);
+
+            //fileName += DateTime.Now.ToString("yymmddhhmmss") + Path.GetExtension(createDto.PhotoUrl.FileName);
+            //foto.Path = Path.Combine(wwwrootPath, fileName);
+
+            //using (var fileStream = new FileStream(foto.Path, FileMode.CreateNew))
+            //{
+            //    createDto.PhotoUrl.CopyTo(fileStream);
+            //}
+
+
+
             return RedirectToAction("Index");
 
-            
+
         }
         [HttpGet]
         public IActionResult Update(int id)
@@ -51,10 +74,23 @@ namespace FilmDukkani.Controllers
             return View(film);
         }
         [HttpPost]
-        public IActionResult Update(Film film)
+        public IActionResult Update(FilmUpdateDto updateDto)
         {
-            context.Update(film);
+            //Film film = new()
+            //{
+            //    FilmAdi = updateDto.FilmAdi,
+            //    Aciklama = updateDto.Aciklama,
+            //    Adet = updateDto.Adet,
+            //    AltYazilari = updateDto.AltYazilari,
+            //    Yonetmeni = updateDto.Yonetmeni,
+            //    Ozeti = updateDto.Ozeti,
+            //    YapimYili = updateDto.YapimYili
+            //};
+            var sonuc = mapper.Map<Film>(updateDto);
+
+            context.Filmler.Update(sonuc);
             context.SaveChanges();
+
             return RedirectToAction("Index");
 
         }
@@ -93,6 +129,20 @@ namespace FilmDukkani.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            Film film = manager.Get((int)id);
+
+            if (film == null)
+            {
+                return NotFound();
+            }
+            return View(film);
+
+        }
     }
 }

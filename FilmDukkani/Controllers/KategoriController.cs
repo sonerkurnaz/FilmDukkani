@@ -23,12 +23,12 @@ namespace FilmDukkani.Controllers
 
         }
 
-        public IActionResult Index(KategoriListDto dto)
+        public IActionResult Index()
         {
-            Kategori kategori = mapper.Map<Kategori>(dto);
-            manager.GetAll();
-           // context.SaveChanges();
-            return View(kategori);
+
+            var sonuc = manager.GetAll();
+            context.SaveChanges();
+            return View(sonuc);
         }
         #region Create
 
@@ -42,8 +42,8 @@ namespace FilmDukkani.Controllers
         [HttpPost]
         public IActionResult Create(KategoriCreateDto createDto)
         {
-            Kategori kategori = mapper.Map<Kategori>(createDto);
-            manager.Add(kategori);
+            var sonuc = mapper.Map<Kategori>(createDto);
+            manager.Add(sonuc);
             context.SaveChanges();
 
 

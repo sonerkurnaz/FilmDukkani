@@ -1,7 +1,10 @@
+using FilmDukkani;
 using FilmDukkani.AutoMapper;
 using FilmDukkani.BL.Abstract;
 using FilmDukkani.BL.Concrete;
 using FilmDukkani.DAL;
+using FilmDukkani.DAL.Abstract;
+using FilmDukkani.DAL.Concrete;
 using FilmDukkani.DAL.Contexts;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
@@ -23,8 +26,26 @@ builder.Services.AddAutoMapper(typeof(FilmDukkaniProfile));
 builder.Services.AddScoped<IKullaniciManager, KullaniciManager>();
 builder.Services.AddScoped<IKategoriManager, KategoriManager>();
 builder.Services.AddScoped<IFilmManager, FilmManager>();
+builder.Services.AddScoped<ISepetManager, SepetManager>();
+builder.Services.AddScoped<IAdresManager, AdresManager>();
 
 
+
+
+
+builder.Services.AddIdentity<AppUser, IdentityRole>(x =>
+{
+    x.SignIn.RequireConfirmedPhoneNumber = false;
+    x.SignIn.RequireConfirmedEmail = false;
+    x.SignIn.RequireConfirmedAccount = false;
+
+    x.Password.RequiredLength = 3;
+    x.Password.RequireUppercase = false;
+    x.Password.RequireNonAlphanumeric = false;
+    x.Password.RequiredUniqueChars = 0;
+    x.Password.RequireLowercase = false;
+
+}).AddEntityFrameworkStores<SqlDbContext>().AddDefaultTokenProviders();
 
 //builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 //    .AddCookie(options =>

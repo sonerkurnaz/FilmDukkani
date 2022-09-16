@@ -1,5 +1,5 @@
-﻿@model FilmCreateDto
-<form asp-controller="Film" asp-action="Create" method="post">
+﻿@model  FilmCreateDto
+<form asp-controller="Film" asp-action="Create" method="post" enctype="multipart/form-data">
     <div class="mb-3">
         <label asp-for="FilmAdi" class="form-label">Film Adı</label>
         <input type="text" class="form-control" asp-for="FilmAdi">
@@ -19,7 +19,9 @@
     
     <div class="mb-3">
         <label asp-for="PhotoUrl" class="form-label">Resim</label>
-        <input type="image" class="form-control" asp-for="PhotoUrl">
+        <input type="hidden" name="file"  asp-for="PhotoUrl">
+        <img src="~/img/@Model.PhotoUrl" width="80" /> 
+        <input type="file" name="file" />
     </div>
 
     <div class="mb-3">

@@ -9,10 +9,10 @@ namespace FilmDukkani.Entities
         public string? FilmAdi { get; set; }
         public string? Aciklama { get; set; }
         public string? Yonetmeni { get; set; }
-        public string? Ozeti { get; set; }
-        [Display(Name = "Yapım Yılı")]
+        public string? Puan { get; set; }
+        
         public int YapimYili { get; set; }
-        public string? AltYazilari { get; set; }
+        public string? Sure { get; set; }
         public decimal? Fiyat { get; set; }
         public decimal? Adet { get; set; }      
         

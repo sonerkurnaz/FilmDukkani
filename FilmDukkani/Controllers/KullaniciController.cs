@@ -19,21 +19,32 @@ namespace FilmDukkani.Controllers
         private readonly IKullaniciManager manager;
         private readonly IMapper mapper;
         private readonly SqlDbContext context;
+        private readonly UserManager<AppUser> userManager;
+        private readonly SignInManager<AppUser> signInManager;
+        private readonly IPasswordHasher<AppUser> passwordHasher;
+        private readonly ISepetManager sepetManager;
 
         public KullaniciController
             (
             IKullaniciManager manager,
             IMapper mapper,
-            SqlDbContext context
-            
+            SqlDbContext context,
+            UserManager<AppUser> userManager,
+            SignInManager<AppUser> signInManager,
+            IPasswordHasher<AppUser> passwordHasher,
+            ISepetManager sepetManager
             )
         {
             this.manager = manager;
             this.mapper = mapper;
             this.context = context;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
+            this.passwordHasher = passwordHasher;
+            this.sepetManager = sepetManager;
         }
 
-        // [AllowAnonymous]
+        [AllowAnonymous]
         public IActionResult Login(string url)
         {
 
@@ -44,26 +55,19 @@ namespace FilmDukkani.Controllers
         {
             if (ModelState.IsValid)
             {
-                Kullanici kullanici=mapper.Map<Kullanici>(loginDTO);
-                var user = manager.GetAll(p => p.KullaniciAdi == loginDTO.KullaniciAdi && p.Sifre == loginDTO.Sifre)
-                                    .FirstOrDefault();
+                AppUser user = await userManager.FindByNameAsync(loginDTO.KullaniciAdi);
+                if (user != null)
+                {
+                    var signInResult = await signInManager.PasswordSignInAsync(user, loginDTO.Sifre, false, false);
 
-                //if (user != null)
-                //{
-                //    var claims = new List<Claim>
-                //    {
-                //        new Claim(ClaimTypes.Name,user.KullaniciAdi),
-                //        new Claim(ClaimTypes.Email,user.Email),
-                       
-                //    };
+                    if (signInResult.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
 
-                //    var userIdentity = new ClaimsIdentity(claims, "login");
-                //    ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
-                //    await HttpContext.SignInAsync(principal);
+                    ModelState.AddModelError("", "Kullanici Adi yada Şifre Yanliş");
 
-                //    return RedirectToAction("Index", "Home");
-                //}
-
+                }
 
             }
 
@@ -71,26 +75,37 @@ namespace FilmDukkani.Controllers
         }
 
 
-        //[AllowAnonymous]
+        [AllowAnonymous]
         public IActionResult Register()
         {
             UserRegisterDto dTO = new();
             return View(dTO);
         }
 
-        [HttpPost]
-        public IActionResult Register(UserRegisterDto registerDTO)
+        [HttpPost, ValidateAntiForgeryToken,AllowAnonymous]
+        public async Task<IActionResult> Register(UserRegisterDto registerDTO)
         {
-           
+
+
             if (ModelState.IsValid)
             {
-                Kullanici kullanici = mapper.Map<Kullanici>(registerDTO);
-                manager.Add(kullanici);
-                context.SaveChanges();
-                
-                
-                
+                AppUser appUser = new AppUser { UserName = registerDTO.KullaniciAdi, Email = registerDTO.Email };
+
+                var result = await userManager.CreateAsync(appUser , registerDTO.Sifre);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    foreach (var item in result.Errors)
+                    {
+                        ModelState.AddModelError("", item.Description);
+                    }
+                }
             }
+
             return View(registerDTO);
         }
 
@@ -100,28 +115,38 @@ namespace FilmDukkani.Controllers
         }
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Login");
         }
         [HttpGet]
-        public IActionResult Edit(UserUpdateDto updateDto)
+        public async Task<IActionResult> Edit()
         {
-            var user = mapper.Map<Kullanici>(updateDto);
+            var user = await userManager.FindByNameAsync(User.Identity.Name);
 
+            UserUpdateDto userUpdateDTO = mapper.Map<UserUpdateDto>(user);
 
-
-            return View(user);
+            return View(userUpdateDTO);
         }
         [HttpPost]
-        public IActionResult Edit()
+        public async Task<IActionResult> Edit(UserUpdateDto userUpdateDTO)
         {
-            UserUpdateDto userUpdateDto = new UserUpdateDto();
-            var result = mapper.Map<Kullanici>(userUpdateDto);
-            manager.Update(result);
-            context.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                AppUser user = await userManager.FindByNameAsync(User.Identity.Name);
+                user.UserName = userUpdateDTO.KullaniciAdi;
+                if (userUpdateDTO.Sifre != null)
+                {
+                    user.PasswordHash = passwordHasher.HashPassword(user, userUpdateDTO.Sifre);
+                }
+                var result = await userManager.UpdateAsync(user);
 
-
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            return View(userUpdateDTO);
         }
     }
 }
+

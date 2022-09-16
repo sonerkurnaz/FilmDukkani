@@ -4,16 +4,16 @@ namespace FilmDukkani.Models.DTOs
 {
     public class UserRegisterDto
     {
-        [Required(ErrorMessage ="Zorunlu Alan.")]
-        [MinLength(2, ErrorMessage = "Ad alani 2'den az olamaz")]
+        
+        
         [Display(Name = "Ad")]
-        public string Adi { get; set; }
+        public string? Adi { get; set; }
        
-        [Required(ErrorMessage = "Soyad alanı boş geçilemez")]
-        [StringLength(50, ErrorMessage = "Soyad alanı 50 karakterden büyük olamaz")]
-        [MinLength(2, ErrorMessage = "Soyad alanı 2'den az olamaz")]
+        
         [Display(Name = "Soyad")]
-        public string Soyadi { get; set; }
+        public string? Soyadi { get; set; }
+        [Display(Name = "TC Kimlik No")]
+        public string? TCKN { get; set; }
 
         [Required]
         [Display(Name = "Kullanıcı Adı")]
@@ -25,7 +25,7 @@ namespace FilmDukkani.Models.DTOs
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Şifre alanı zorunludur!")]
-        [MinLength(8, ErrorMessage = "Şifre en az 8 karakter olmalıdır.")]
+        [MinLength(5, ErrorMessage = "Şifre en az 5 karakter olmalıdır.")]
         [DataType(DataType.Password)]
         [Display(Name = "Şifre")]
         public string Sifre { get; set; }
@@ -37,8 +37,8 @@ namespace FilmDukkani.Models.DTOs
         public string SifreTekrar { get; set; }
 
         
-        [Display(Name = "Kabul Et")]
-        public bool KabulEt { get; set; }
+        //[Display(Name = "Kabul Et")]
+        //public bool KabulEt { get; set; }
 
 
 

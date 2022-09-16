@@ -8,10 +8,10 @@ namespace FilmDukkani.DAL.Contexts
     public class SqlDbContext : IdentityDbContext<AppUser>
     {
 
-        //public SqlDbContext(DbContextOptions<SqlDbContext> options) : base(options)
-        //{
+        public SqlDbContext(DbContextOptions<SqlDbContext> options) : base(options)
+        {
 
-        //}
+        }
         public SqlDbContext()
         {
 

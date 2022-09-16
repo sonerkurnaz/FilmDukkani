@@ -1,4 +1,5 @@
 ﻿using FilmDukkani.BL.Abstract;
+using FilmDukkani.DAL.Abstract;
 using FilmDukkani.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace FilmDukkani.BL.Concrete
 {
     public class SepetManager : ManagerBase<Sepet>, ISepetManager
     {
+        //private readonly ISepetDAL sepetDAL;
+
         //private readonly ISepetManager sepetManager;
 
         //public SepetManager(ISepetManager sepetManager)
@@ -20,8 +23,10 @@ namespace FilmDukkani.BL.Concrete
         //{
         //    sepetManager.Add(new Sepet()
         //    {
-                
+
         //    });
         //}
+        
+        
     }
 }

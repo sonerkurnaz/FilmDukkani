@@ -1,4 +1,4 @@
-﻿@model IList<FilmListDto>
+﻿@model IEnumerable<Film>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,11 +10,7 @@
 
 </head>
 <body>
-    <header>
-        <jumbotron></jumbotron>
-    </header>
 
-    <main></main>
 
     <table class="table table-success table-striped-columns">
         <thead>
@@ -26,8 +22,8 @@
                 <th>Yönetmen</th>
                 <th>Yapım</th>
                 <th>Resim</th>
-                @*<td></td>*@
-                
+                <td></td>
+
 
             </tr>
         </thead>
@@ -40,6 +36,8 @@
                     <td>@item.Aciklama</td>
                     <td>@item.Yonetmeni</td>
                     <td>@item.YapimYili</td>
+                    <td></td>
+                    <td></td>
 
                     @*<td>
                         @{
@@ -50,43 +48,40 @@
                                 foreach (var resim in item.Fotograflar)
                                 {
                                     photo = resim.Foto;
-
                                     if (photo != null)
                                     {
-                                        try
-                                        {
-                                            MemoryStream ms = new();
-                                            ms.Write(photo, 78, photo.Length - 78);
-                                            var base64 = Convert.ToBase64String(ms.ToArray());
-                                            imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                        }
+                                        MemoryStream ms = new();
+                                        ms.Write(photo, 78, photo.Length - 78);
+                                        var base64 = Convert.ToBase64String(ms.ToArray());
+                                        imgSrc = String.Format("data:image/gif;base64,{0}", base64);
                                     }
-
-
                                 }
                             }
                         }
-
-                    <td><img src="@imgSrc" class="img-tumbnail" /></td>*@
-                        @*@if (User.Identity.IsAuthenticated == true)
-                {*@
+                        <img src="@imgSrc" class="img-tumbnail" />
+                    </td>*@
+                    @*@if (User.Identity.IsAuthenticated == true)
+                    {*@
                     <td>
                         <a class="btn btn-outline-success"
-                       asp-controller="Film"
-                       asp-route-id="@item.Id"
-                       asp-action="Update">Güncelle</a>
+                   asp-controller="Film"
+                   asp-route-id="@item.Id"
+                   asp-action="Update">Güncelle</a>
                     </td>
                     <td>
-                        <a class="btn btn-outline-danger"
-                       asp-controller="Film"
-                       asp-route-id="@item.Id"
-                       asp-action="Delete">Sil</a>
+                        <a class="btn btn-outline-primary"
+                   asp-controller="Film"
+                   asp-route-id="@item.Id"
+                   asp-action="Details">Detay</a>
                     </td>
-                        @*}*@
+
+                   <td>
+                        <a class="btn btn-outline-danger"
+                   asp-controller="Film"
+                   asp-route-id="@item.Id"
+                   asp-action="Delete">Sil</a>
+                    </td>
+                    @*}*@
 
 
                 </tr>

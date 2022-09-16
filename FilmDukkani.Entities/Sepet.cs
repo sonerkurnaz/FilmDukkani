@@ -8,7 +8,7 @@ namespace FilmDukkani.Entities
 {
     public class Sepet : BaseEntity
     {
-        
+        public string UserId { get; set; }
         public int KullaniciId { get; set; }
         public Kullanici Kullanici { get; set; }
         public IList<SepetItem> SepetItems { get; set; }
