@@ -22,7 +22,7 @@ namespace FilmDukkani.Controllers
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
         private readonly IPasswordHasher<AppUser> passwordHasher;
-        private readonly ISepetManager sepetManager;
+        
 
         public KullaniciController
             (
@@ -31,8 +31,8 @@ namespace FilmDukkani.Controllers
             SqlDbContext context,
             UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager,
-            IPasswordHasher<AppUser> passwordHasher,
-            ISepetManager sepetManager
+            IPasswordHasher<AppUser> passwordHasher
+            
             )
         {
             this.manager = manager;
@@ -41,7 +41,7 @@ namespace FilmDukkani.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.passwordHasher = passwordHasher;
-            this.sepetManager = sepetManager;
+            
         }
 
         [AllowAnonymous]
@@ -50,7 +50,7 @@ namespace FilmDukkani.Controllers
 
             return View(new UserLoginDto { ReturnUrl = url });
         }
-        [HttpPost]
+        [HttpPost,ValidateAntiForgeryToken,AllowAnonymous]
         public async Task<IActionResult> Login(UserLoginDto loginDTO)
         {
             if (ModelState.IsValid)
@@ -62,7 +62,7 @@ namespace FilmDukkani.Controllers
 
                     if (signInResult.Succeeded)
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction(loginDTO.ReturnUrl);
                     }
 
                     ModelState.AddModelError("", "Kullanici Adi yada Şifre Yanliş");

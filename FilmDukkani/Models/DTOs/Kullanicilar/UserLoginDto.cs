@@ -13,7 +13,7 @@ namespace FilmDukkani.Models.DTOs.Kullanicilar
         [Display(Name = "Şifre")]
         [DataType(DataType.Password)]
         public string Sifre { get; set; }
-        public string ReturnUrl { get; set; }
+        public string? ReturnUrl { get; set; }
         [Display(Name = "Beni Hatırla")]
         public bool BeniHatirla { get; set; }
     }

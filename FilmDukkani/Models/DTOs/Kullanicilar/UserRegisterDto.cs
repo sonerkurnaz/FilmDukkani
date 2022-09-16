@@ -4,13 +4,16 @@ namespace FilmDukkani.Models.DTOs
 {
     public class UserRegisterDto
     {
-        
-        
+
+        [Required(ErrorMessage = "Ad alanı girilmedi!")]
         [Display(Name = "Ad")]
+        [MinLength(2,ErrorMessage ="Ad çok kısa")]
+        [MaxLength(50,ErrorMessage ="50'nin altında değer giriniz.")]
         public string? Adi { get; set; }
-       
-        
+
+        [Required(ErrorMessage = "Soyad alanı girilmedi!")]
         [Display(Name = "Soyad")]
+        [MinLength(2, ErrorMessage = "Soyad çok kısa")]
         public string? Soyadi { get; set; }
         [Display(Name = "TC Kimlik No")]
         public string? TCKN { get; set; }
