@@ -67,12 +67,13 @@ namespace FilmDukkani.Controllers
                     }
 
                 }
-                RolAtamaDto atamaDto  = new RolAtamaDto();
+                RolAtamaDto atamaDto = new RolAtamaDto
                 {
                     Role = identityRole,
                     HasRole = hasRole,
                     HasNotRole = hasNotRole,
-                    RoleName = identityRole.Name;
+                    RoleName = identityRole.Name
+
                 };
                 return View(atamaDto);
             }
@@ -105,5 +106,6 @@ namespace FilmDukkani.Controllers
 
                 return RedirectToAction("Index");
             }
+        }
     }
 }
