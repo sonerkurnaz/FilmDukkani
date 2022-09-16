@@ -77,7 +77,7 @@ namespace FilmDukkani.Controllers
                 return View(atamaDto);
             }
             [HttpPost, ValidateAntiForgeryToken]
-            public async Task<IActionResult> AssignedUser(AssignedRoleDTO roleDTO)
+            public async Task<IActionResult> AssignedUser(RolAtamaDto roleDTO)
             {
                 IdentityResult result;
                 string[] addIds = roleDTO.AddIds;
