@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FilmDukkani.Controllers
 {
-    public class RoleController : Controller
-    {
+    
+    
         //[Authorize(Roles = "admin")]
         //[Authorize(Roles = "manager")]
         public class RoleController : Controller
@@ -108,4 +108,3 @@ namespace FilmDukkani.Controllers
             }
         }
     }
-}

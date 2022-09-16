@@ -13,11 +13,11 @@
                        asp-controller="Home"
                        asp-action="Index">Anasayfa</a>
                 </li>
-                
 
 
 
-                
+
+
                 <li class="nav-item">
                     <a class="nav-link text-dark"
                        asp-area=""
@@ -42,11 +42,17 @@
                        asp-action="Index">Filmler</a>
                         </li>
                         <li class="nav-item">
-                    <a class="nav-link text-dark"
+                            <a class="nav-link text-dark"
                        asp-area=""
                        asp-controller="Kategori"
                        asp-action="Index">Kategoriler</a>
-                </li>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark"
+                       asp-area=""
+                       asp-controller="Role"
+                       asp-action="Index">Roller</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark"
                        asp-area=""
@@ -59,12 +65,13 @@
                        asp-controller="Kullanici"
                        asp-action="Logout">Çıkış Yap</a>
                         </li>
+
                     }
                     else
                     {
 
                         <li class="nav-item">
-                            <a class="btn btn-primary" 
+                            <a class="btn btn-primary"
                        asp-area=""
                        asp-controller="Kullanici"
                        asp-action="Register">Üye Ol</a>
@@ -80,7 +87,7 @@
 
                 }
 
-                </ul>
+            </ul>
 
         </div>
     </div>
