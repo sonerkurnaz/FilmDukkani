@@ -1,5 +1,5 @@
 ﻿@model UserUpdateDto
-<form asp-controller="Kullanici" asp-action="Update" method="post">
+<form asp-controller="Kullanici" asp-action="Edit" method="post">
 
 
     <div class="mb-3">
@@ -8,23 +8,29 @@
     </div>
     <div class="mb-3">
         <label asp-for="Adi" class="form-label">Ad</label>
-        <input type="text" class="form-control" asp-for="Adi">
+        <input type="text" class="form-control" placeholder="Ad" asp-for="Adi">
     </div>
     <div class="mb-3">
         <label asp-for="Soyadi" class="form-label">Soyadı</label>
-        <input type="text" class="form-control" asp-for="Soyadi">
+        <input type="text" class="form-control" placeholder="Soyadı" asp-for="Soyadi">
     </div>
-    @*<div class="mb-3">
-        <label asp-for="YapimYili" class="form-label">Yapım Yılı</label>
-        <input type="datetime" class="form-control"
-               asp-for="YapimYili">
-    </div>*@
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label">Email</label>
+        <input type="text" class="form-control" placeholder="Soyadı" asp-for="Email">
+    </div>
+    <div class="mb-3">
+        <label asp-for="KrediKartNo" class="form-label">Soyadı</label>
+        <input type="text" class="form-control" placeholder="Kart No" asp-for="KrediKartNo">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Gsm" class="form-label">Tel</label>
+        <input type="text" class="form-control" placeholder="Tel No" asp-for="Gsm">
+    </div>
     
-    
-        
+         
     <div class="mb-3">
         <button type="submit" class="btn btn-outline-primary">Kaydet</button>
-        <a class="btn btn-outline-danger" asp-action="Index" asp-controller="Kullanici">Geri Dön</a>
+        <a class="btn btn-outline-danger" asp-action="Index" asp-controller="Home">Geri Dön</a>
     </div>
 
 </form>

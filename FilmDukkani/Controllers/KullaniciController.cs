@@ -62,7 +62,7 @@ namespace FilmDukkani.Controllers
 
                     if (signInResult.Succeeded)
                     {
-                        return RedirectToAction(loginDTO.ReturnUrl);
+                        return RedirectToAction("Index","Home");
                     }
 
                     ModelState.AddModelError("", "Kullanici Adi yada Şifre Yanliş");
@@ -118,16 +118,17 @@ namespace FilmDukkani.Controllers
             await signInManager.SignOutAsync();
             return RedirectToAction("Login");
         }
+
         [HttpGet]
         public async Task<IActionResult> Edit()
         {
             var user = await userManager.FindByNameAsync(User.Identity.Name);
 
-            UserUpdateDto userUpdateDTO = mapper.Map<UserUpdateDto>(user);
+            UserUpdateDto userUpdateDto = new UserUpdateDto(user);
 
-            return View(userUpdateDTO);
+            return View(userUpdateDto);
         }
-        [HttpPost]
+        [HttpPost,ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(UserUpdateDto userUpdateDTO)
         {
             if (ModelState.IsValid)

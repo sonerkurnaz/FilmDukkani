@@ -42,8 +42,8 @@ namespace FilmDukkani.Controllers
         [HttpPost]
         public IActionResult Create(KategoriCreateDto createDto)
         {
-            var sonuc = mapper.Map<Kategori>(createDto);
-            manager.Add(sonuc);
+            Kategori kategori = mapper.Map<Kategori>(createDto);
+            manager.Add(kategori);
             context.SaveChanges();
 
 

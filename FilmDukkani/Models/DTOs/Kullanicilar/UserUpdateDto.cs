@@ -7,6 +7,7 @@ namespace FilmDukkani.Models.DTOs.Kullanicilar
 {
     public class UserUpdateDto
     {
+        
         [Display(Name = "Ad")]
         public string Adi { get; set; }
         [Display(Name = "Soyad")]
@@ -29,6 +30,15 @@ namespace FilmDukkani.Models.DTOs.Kullanicilar
         public string Sifre { get; set; }
         [Display(Name = "Adres")]
         public IList<Adres> Adresler { get; set; }
-        
+        public UserUpdateDto()
+        {
+
+        }
+        public UserUpdateDto(AppUser user)
+        {
+            KullaniciAdi = user.UserName;
+            Sifre = user.PasswordHash;
+            Email = user.Email;
+        }
     }
 }
