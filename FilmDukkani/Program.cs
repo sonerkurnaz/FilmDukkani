@@ -47,16 +47,7 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(x =>
 
 }).AddEntityFrameworkStores<SqlDbContext>().AddDefaultTokenProviders();
 
-//builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-//    .AddCookie(options =>
-//    {
-//        options.LoginPath = "/User/Login";
-//        options.LogoutPath = "/User/Logout";
-//        options.AccessDeniedPath = "/User/Yasak";
-//        options.Cookie.Name = "FilmDukkan";
-//        options.Cookie.HttpOnly = true;
-//        options.Cookie.SameSite = SameSiteMode.Strict;
-//    });
+
 
 var app = builder.Build();
 
