@@ -86,10 +86,10 @@ namespace FilmDukkani.Controllers
             //    Ozeti = updateDto.Ozeti,
             //    YapimYili = updateDto.YapimYili
             //};
-            var sonuc = mapper.Map<Film>(updateDto);
+            var film = mapper.Map<Film>(updateDto);
 
-            context.Filmler.Update(sonuc);
-            context.SaveChanges();
+            manager.Update(film);
+            //context.SaveChanges();
 
             return RedirectToAction("Index");
 

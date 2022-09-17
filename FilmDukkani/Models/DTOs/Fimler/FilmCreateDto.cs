@@ -16,6 +16,8 @@ namespace FilmDukkani.Models.DTOs.Fimler
         [Display(Name = "Yönetmen")]
         public string? Yonetmeni { get; set; }
         [Display(Name = "Yapım Yılı")]
+        public string? Sure { get; set; }
+        public string? Puan { get; set; }
         public int YapimYili { get; set; }
         public decimal? Fiyat { get; set; }
         public Fotograf? Fotograf { get; set; }

@@ -3,20 +3,20 @@
 <div class="row">
     <div class="card">
         <div class="card-title">
-            <h4>Yeni Rol</h4>
+            <h4>Create Role</h4>
         </div>
 
         <form asp-action="Create" asp-controller="Role">
             <div class="card-body">
                 <div class="form-group">
-                    <label>Ad</label>
-                    <input type="text" name="Name" class="form-control" placeholder="Rol Adı" />
+                    <label>Name</label>
+                    <input type="text" name="Name" class="form-control" placeholder="Role Name" />
                 </div>
 
                 <div class="form-group">
 
-                    <input type="submit" name="Name" class="btn btn-outline-info" value="Rol Oluştur" />
-                    <a class="btn btn-outline-danger" asp-action="Index" asp-controller="Role">Geri Dön</a>
+                    <input type="submit" name="Name" class="btn btn-outline-info" value="Create Role" />
+                    <a class="btn btn-outline-dark" asp-action="Index" asp-controller="Role">Back to List</a>
                 </div>
 
             </div>

@@ -20,11 +20,13 @@ namespace FilmDukkani.Models.DTOs.Fimler
         
         [Display(Name = "Fiyat")]
         public decimal? Fiyat { get; set; }
+        public string? Puan { get; set; }
+        public string? Sure { get; set; }
         [Display(Name = "Adet")]
         public decimal? Adet { get; set; }
-        public List<FilmKategori> FilmKategori { get; set; }
+        public List<FilmKategori>? FilmKategori { get; set; }
         public Fotograf? Fotograf { get; set; }
 
-        public IFormFile PhotoUrl { get; set; }
+        public IFormFile? PhotoUrl { get; set; }
     }
 }

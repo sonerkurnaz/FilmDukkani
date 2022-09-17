@@ -1,4 +1,4 @@
-﻿@model IList<Microsoft.AspNetCore.Identity.IdentityRole>
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
 
 <div class="row">
     <div class="col-sm-12">
@@ -11,11 +11,11 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Id</th>
-                                <th>Ad</th>
-                                <th>Kullanıcı Adı</th>
-                                <th>Güncelle</th>
-                                <th>Sil</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>User</th>
+                                <th>Edit</th>
+                                <th>Remove</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,7 +44,7 @@
             </div>
             <div class="card-footer">
                 <a asp-action="Create"
-                   class="btn btn-outline-info">Yeni</a>
+                   class="btn btn-outline-info">Create</a>
 
             </div>
         </div>

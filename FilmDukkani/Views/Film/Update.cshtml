@@ -1,7 +1,5 @@
-﻿@model Film
+﻿@model FilmUpdateDto
 <form asp-controller="Film" asp-action="Update" method="post">
-
-
     <div class="mb-3">
         <label asp-for="FilmAdi" class="form-label">Film Adı</label>
         <input type="text" class="form-control" asp-for="FilmAdi">
@@ -15,14 +13,27 @@
         <input type="text" class="form-control" asp-for="Yonetmeni">
     </div>
     <div class="mb-3">
-        <label asp-for="YapimYili" class="form-label">Yapım Yılı</label>
-        <input type="datetime" class="form-control"
-               asp-for="YapimYili">
+        <label asp-for="YapimYili" class="form-label">Yapım</label>
+        <input type="datetime" class="form-control" asp-for="YapimYili">
     </div>
-    
-   @* <div class="mb-3">
-        <label asp-for="PhotoUrl" class="form-label">Resim</label>
-        <input type="file" class="form-control" asp-for="PhotoUrl">
+    <div class="mb-3">
+        <label asp-for="Fiyat" class="form-label">Fiyat</label>
+        <input type="text" class="form-control" asp-for="Fiyat">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Sure" class="form-label">Süre</label>
+        <input type="text" class="form-control" asp-for="Sure">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Puan" class="form-label">Puan</label>
+        <input type="text" class="form-control" asp-for="Puan">
+    </div>
+
+    @*<div class="mb-3">
+        <label asp-for="photo" class="form-label">Resim</label>
+        <input type="hidden" name="file" asp-for="PhotoUrl">
+        <img src="~/img/@Model.PhotoUrl" width="80" />
+        <input type="file" name="file" />
     </div>*@
     
     

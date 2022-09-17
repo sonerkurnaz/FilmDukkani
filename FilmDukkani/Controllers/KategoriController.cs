@@ -34,14 +34,15 @@ namespace FilmDukkani.Controllers
 
 
 
-        public IActionResult Create(KategoriListDto listDto)
+        public IActionResult Create(KategoriListDto createDto)
         {
 
-            return View(listDto);
+            return View(createDto);
         }
         [HttpPost]
         public IActionResult Create(KategoriCreateDto createDto)
         {
+
             Kategori kategori = mapper.Map<Kategori>(createDto);
             manager.Add(kategori);
             context.SaveChanges();
@@ -88,6 +89,20 @@ namespace FilmDukkani.Controllers
             context.SaveChanges();
             return RedirectToAction("Index");
         }
-        #endregion
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            Kategori kategori  = manager.Get((int)id);
+
+            if (kategori == null)
+            {
+                return NotFound();
+            }
+            return View(kategori);
+            #endregion
+        }
     }
 }
