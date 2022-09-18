@@ -34,17 +34,18 @@ namespace FilmDukkani.Controllers
 
 
 
-        public IActionResult Create(KategoriListDto createDto)
+        public IActionResult Create(Kategori kategori)
         {
 
-            return View(createDto);
+            return View(kategori);
         }
         [HttpPost]
         public IActionResult Create(KategoriCreateDto createDto)
         {
-
+            
             Kategori kategori = mapper.Map<Kategori>(createDto);
-            manager.Add(kategori);
+            
+            context.Kategoriler.Add(kategori);
             context.SaveChanges();
 
 
