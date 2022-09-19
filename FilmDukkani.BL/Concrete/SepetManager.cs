@@ -11,22 +11,32 @@ namespace FilmDukkani.BL.Concrete
 {
     public class SepetManager : ManagerBase<Sepet>, ISepetManager
     {
-        //private readonly ISepetDAL sepetDAL;
+        private readonly ISepetDAL sepetDAL;
 
-        //private readonly ISepetManager sepetManager;
+        public SepetManager(ISepetDAL sepetDAL)
+        {
+            this.sepetDAL = sepetDAL;
+        }
 
-        //public SepetManager(ISepetManager sepetManager)
-        //{
-        //    this.sepetManager = sepetManager;
-        //}
-        //public void InitCart(string userId)
-        //{
-        //    sepetManager.Add(new Sepet()
-        //    {
+        public void AddToCart(string userId, int filmId, int adet)
+        {
+            var cart = GetSepetByUserId(userId);
+            if (cart != null)
+            {
+                
+            }
+        }
 
-        //    });
-        //}
-        
-        
+        public Sepet GetSepetByUserId(string userId)
+        {
+            return sepetDAL.GetByUserId(userId);
+        }
+
+        public void InitCart(string userId)
+        {
+            sepetDAL.Add(new Sepet() { UserId = userId });
+        }
+
+
     }
 }

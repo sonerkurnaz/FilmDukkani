@@ -120,7 +120,7 @@ namespace FilmDukkani.DAL.Migrations
                     b.Property<int?>("KullaniciId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SehirId")
+                    b.Property<int?>("SehirId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -154,9 +154,6 @@ namespace FilmDukkani.DAL.Migrations
 
                     b.Property<decimal?>("Fiyat")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("KategoriId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Puan")
                         .HasColumnType("nvarchar(max)");
@@ -266,9 +263,6 @@ namespace FilmDukkani.DAL.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FilmId")
-                        .HasColumnType("int");
-
                     b.Property<string>("KategoriAdi")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -369,16 +363,11 @@ namespace FilmDukkani.DAL.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("KullaniciId")
-                        .HasColumnType("int");
-
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("KullaniciId");
 
                     b.ToTable("Sepetler");
                 });
@@ -577,9 +566,7 @@ namespace FilmDukkani.DAL.Migrations
 
                     b.HasOne("FilmDukkani.Entities.Sehir", "Sehir")
                         .WithMany()
-                        .HasForeignKey("SehirId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SehirId");
 
                     b.Navigation("Sehir");
                 });
@@ -612,17 +599,6 @@ namespace FilmDukkani.DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Film");
-                });
-
-            modelBuilder.Entity("FilmDukkani.Entities.Sepet", b =>
-                {
-                    b.HasOne("FilmDukkani.Entities.Kullanici", "Kullanici")
-                        .WithMany()
-                        .HasForeignKey("KullaniciId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Kullanici");
                 });
 
             modelBuilder.Entity("FilmDukkani.Entities.SepetItem", b =>

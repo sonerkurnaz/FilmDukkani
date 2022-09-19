@@ -9,6 +9,8 @@ namespace FilmDukkani.BL.Abstract
 {
     public interface ISepetManager:IManagerBase<Sepet>
     {
-        //void InitCart(string userId);
+        void InitCart(string userId);
+        Sepet GetSepetByUserId(string userId);
+        void AddToCart(string userId, int filmId, int adet);
     }
 }
