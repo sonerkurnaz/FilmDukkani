@@ -3,10 +3,14 @@ using FilmDukkani.BL.Abstract;
 using FilmDukkani.DAL.Contexts;
 using FilmDukkani.Entities;
 using FilmDukkani.Models.DTOs.Kategoriler;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace FilmDukkani.Controllers
 {
+    [Authorize(Roles = "admin")]
+    [Authorize(Roles = "manager")]
     public class KategoriController : Controller
     {
 
@@ -22,7 +26,7 @@ namespace FilmDukkani.Controllers
             this.mapper = mapper;
 
         }
-
+        [AllowAnonymous]
         public IActionResult Index()
         {
 
@@ -39,7 +43,7 @@ namespace FilmDukkani.Controllers
 
             return View(kategori);
         }
-        [HttpPost]
+        [HttpPost,ValidateAntiForgeryToken]
         public IActionResult Create(KategoriCreateDto createDto)
         {
             
@@ -63,7 +67,7 @@ namespace FilmDukkani.Controllers
             return View(result);
         }
 
-        [HttpPost]
+        [HttpPost,ValidateAntiForgeryToken]
         public IActionResult Delete(Kategori kategori)
         {
             var remove = context.Kategoriler.FirstOrDefault(p => p.Id == kategori.Id);
@@ -82,7 +86,7 @@ namespace FilmDukkani.Controllers
             return View(kategori);
         }
 
-        [HttpPost]
+        [HttpPost,ValidateAntiForgeryToken]
         public IActionResult Update(KategoriUpdateDto updateDto)
         {
             Kategori kategori = mapper.Map<Kategori>(updateDto);

@@ -134,7 +134,8 @@ namespace FilmDukkani.Controllers
             if (ModelState.IsValid)
             {
                 AppUser user = await userManager.FindByNameAsync(User.Identity.Name);
-                user.UserName = userUpdateDTO.KullaniciAdi;
+                //user.UserName = userUpdateDTO.KullaniciAdi;
+                Kullanici kullanici = mapper.Map<Kullanici>(userUpdateDTO);
                 if (userUpdateDTO.Sifre != null)
                 {
                     user.PasswordHash = passwordHasher.HashPassword(user, userUpdateDTO.Sifre);

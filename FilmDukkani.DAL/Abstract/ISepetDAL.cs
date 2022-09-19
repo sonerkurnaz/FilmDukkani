@@ -9,5 +9,7 @@ namespace FilmDukkani.DAL.Abstract
 {
     public interface ISepetDAL : IBaseRepository<Sepet>
     {
+        void SepeteEkle(Film film);
+        void SepeteCikar(Film film);
     }
 }

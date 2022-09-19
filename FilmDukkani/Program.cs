@@ -26,11 +26,11 @@ builder.Services.AddAutoMapper(typeof(FilmDukkaniProfile));
 builder.Services.AddScoped<IKullaniciManager, KullaniciManager>();
 builder.Services.AddScoped<IKategoriManager, KategoriManager>();
 builder.Services.AddScoped<IFilmManager, FilmManager>();
-builder.Services.AddScoped<ISepetManager, SepetManager>();
+
 builder.Services.AddScoped<IAdresManager, AdresManager>();
 
 
-
+builder.Services.AddHttpContextAccessor();
 
 
 builder.Services.AddIdentity<AppUser, IdentityRole>(x =>

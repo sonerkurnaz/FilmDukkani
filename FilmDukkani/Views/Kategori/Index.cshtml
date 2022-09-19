@@ -12,8 +12,12 @@
                     <th>@Html.DisplayNameFor(model => model.Id)</th>
                     <th>@Html.DisplayNameFor(model => model.KategoriAdi)</th>
                     <th>@Html.DisplayNameFor(model => model.Aciklama)</th>
-                    <td>Güncelle</td>
-                    <td>Sil</td>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <th>Güncelle</th>
+                        <th>Sil</th>
+                    }
+
                 </tr>
 
 
@@ -27,20 +31,23 @@
                         <td>@item.Id </td>
                         <td>@item.KategoriAdi </td>
                         <td><p>@item.Aciklama</p></td>
-
-                        <td>
-                            <a class="btn btn-outline-success float-right"
+                        @if (User.IsInRole("admin"))
+                        {
+                            <td>
+                                <a class="btn btn-outline-success float-right"
                            asp-action="Update"
                            asp-controller="Kategori"
                            asp-route-id="@item.Id">Güncelle</a>
-                        </td>
-                        <td>
-                            <a class="btn btn-outline-danger float-right"
+                            </td>
+                            <td>
+                                <a class="btn btn-outline-danger float-right"
                            asp-action="Delete"
                            asp-controller="Kategori"
                            asp-route-id="@item.Id" value="Sil">Sil</a>
 
-                        </td>
+                            </td>
+                        }
+
 
                     </tr>
 
@@ -49,10 +56,13 @@
         </table>
         <div class="card-footer">
             <div class="form-group">
-
-                <a class="btn btn-primary float-right"
+                @if (User.IsInRole("admin"))
+                {
+                    <a class="btn btn-primary float-right"
                    asp-action="Create"
                    asp-controller="Kategori">Yeni Kategori</a>
+                }
+
 
 
             </div>
@@ -60,5 +70,4 @@
         </div>
     </div>
 </div>
-
 

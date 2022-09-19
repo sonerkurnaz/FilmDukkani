@@ -37,9 +37,9 @@ namespace FilmDukkani.Controllers
         }
 
         // GET: AdresController/Create
-        public ActionResult Create()
+        public ActionResult Create(Adres adres)
         {
-            return View();
+            return View(adres);
         }
 
         // POST: AdresController/Create
@@ -50,6 +50,7 @@ namespace FilmDukkani.Controllers
             Adres adres = mapper.Map<Adres>(adresCreate);
             
             manager.Add(adres);
+            context.SaveChanges();
             
             return View(adres);
         }

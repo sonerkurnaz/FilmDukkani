@@ -16,16 +16,20 @@
         {
             <div class="container-fluid p-5 bg-primary text-white text-center">
                 <h1 class="display-5 fw-bold">Hoşgeldin, @User.Identity.Name</h1>
-                <a asp-action="Create" asp-controller="Film" class="btn btn-success btn-lg">Film Ekle</a>
-                <a asp-action="Create" asp-controller="Kategori" class="btn btn-success btn-lg">Kategori Ekle</a>
-                <a asp-action="Index" asp-controller="Role" class="btn btn-success btn-lg">Rol Ayarları</a>
+                @if (User.IsInRole("admin"))
+                {
+                    <a asp-action="Create" asp-controller="Film" class="btn btn-success btn-lg">Film Ekle</a>
+                    <a asp-action="Create" asp-controller="Kategori" class="btn btn-success btn-lg">Kategori Ekle</a>
+                    <a asp-action="Index" asp-controller="Role" class="btn btn-success btn-lg">Rol Yönetimi</a>
+                }
+
             </div>
 
         }
         else
         {
             <h1 class="display-5 fw-bold">Merhaba</h1>
-            <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
+            <p class="col-md-8 fs-4">Filmleri görebilmek için üye olunuz.</p>
 
         }
 
@@ -44,11 +48,11 @@
                 <ul class="nav nav-pills flex-column">
                     <li class="nav-item">
                         <a asp-action="Hakkimizda"
-                           asp-controller="Home" class="nav-link" >Hakkımızda</a>
+                           asp-controller="Home" class="nav-link">Hakkımızda</a>
                     </li>
                     <li class="nav-item">
                         <a asp-action="Privacy"
-                           asp-controller="Home" class="nav-link" >Gizlilik</a>
+                           asp-controller="Home" class="nav-link">Gizlilik</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>

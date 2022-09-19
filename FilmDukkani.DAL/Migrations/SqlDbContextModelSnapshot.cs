@@ -120,7 +120,7 @@ namespace FilmDukkani.DAL.Migrations
                     b.Property<int?>("KullaniciId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SehirId")
+                    b.Property<int>("SehirId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -154,6 +154,9 @@ namespace FilmDukkani.DAL.Migrations
 
                     b.Property<decimal?>("Fiyat")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("KategoriId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Puan")
                         .HasColumnType("nvarchar(max)");
@@ -262,6 +265,9 @@ namespace FilmDukkani.DAL.Migrations
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("FilmId")
+                        .HasColumnType("int");
 
                     b.Property<string>("KategoriAdi")
                         .IsRequired()
@@ -571,7 +577,9 @@ namespace FilmDukkani.DAL.Migrations
 
                     b.HasOne("FilmDukkani.Entities.Sehir", "Sehir")
                         .WithMany()
-                        .HasForeignKey("SehirId");
+                        .HasForeignKey("SehirId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Sehir");
                 });

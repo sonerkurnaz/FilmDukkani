@@ -4,12 +4,16 @@ using FilmDukkani.DAL.Contexts;
 using FilmDukkani.Entities;
 using FilmDukkani.Models.DTOs.Fimler;
 using FilmDukkani.Models.DTOs.Kategoriler;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
+using System.Data;
 
 namespace FilmDukkani.Controllers
 {
+    [Authorize(Roles = "admin")]
+    [Authorize(Roles = "manager")]
     public class FilmController : Controller
     {
 
@@ -26,6 +30,7 @@ namespace FilmDukkani.Controllers
             this.mapper = mapper;
             this.hostEnvironment = hostEnvironment;
         }
+        [AllowAnonymous]
         public IActionResult Index(FilmListDto dto)
         {
             Film film = mapper.Map<Film>(dto);
@@ -73,7 +78,7 @@ namespace FilmDukkani.Controllers
             Film film = context.Filmler.Find(id);
             return View(film);
         }
-        [HttpPost]
+        [HttpPost,ValidateAntiForgeryToken]
         public IActionResult Update(FilmUpdateDto updateDto)
         {
             //Film film = new()
@@ -111,7 +116,7 @@ namespace FilmDukkani.Controllers
 
             return View(film);
         }
-        [HttpPost]
+        [HttpPost,ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
             if (context.Filmler == null)
@@ -127,7 +132,7 @@ namespace FilmDukkani.Controllers
             await context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+        [AllowAnonymous]
         public IActionResult Details(int? id)
         {
             if (id == null)

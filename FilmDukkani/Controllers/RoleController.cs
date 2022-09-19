@@ -1,4 +1,5 @@
 ﻿using FilmDukkani.Models.DTOs.Kullanicilar;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,8 +7,8 @@ namespace FilmDukkani.Controllers
 {
 
 
-    //[Authorize(Roles = "admin")]
-    //[Authorize(Roles = "manager")]
+    [Authorize(Roles = "admin")]
+    [Authorize(Roles = "manager")]
     public class RoleController : Controller
     {
         private readonly UserManager<AppUser> userManager;
