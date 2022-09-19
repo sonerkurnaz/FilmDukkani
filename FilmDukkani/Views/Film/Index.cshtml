@@ -12,22 +12,51 @@
 <body>
     @if (User.Identity.IsAuthenticated == true)
     {
-        @foreach (var item in Model)
-        {
-            <div class=row>
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h4 class="card-title">@item.FilmAdi</h4>
-                        <h6 class="card-subtitle mb-2 text-muted">@item.YapimYili</h6>
-                        <p class="card-text">@item.Aciklama</p>
-                        <a asp-action="Details"
-                   asp-controller="Film"
-                   asp-route-id="@item.Id" class="card-link btn btn-info">Detay</a>
-                        <a class="card-link btn btn-danger">Sepete Ekle</a>
+         @if (User.IsInRole("admin"))
+    {
+    <a class="btn btn-primary float-right" asp-action="Create">Film Ekle</a>
+    }
+        <div class="row">
+
+            @foreach (var item in Model)
+            {
+                
+                    <div class="card col-md-3" style="width: 18rem;">
+                        <div class="card-body">
+                            <h4 class="card-title">@item.FilmAdi</h4>
+                            <h6 class="card-subtitle mb-2 text-muted">@item.YapimYili</h6>
+                            <p class="card-text">@item.Aciklama</p>
+
+                            @if (User.IsInRole("admin"))
+                            {
+                                
+                                <td>
+                                <a class="btn btn-outline-success float-center"
+                           asp-controller="Film"
+                           asp-route-id="@item.Id"
+                           asp-action="Update">Güncelle</a>
+                                </td>
+                                <td>
+                                <a class="btn btn-outline-danger float-center"
+                           asp-controller="Film"
+                           asp-route-id="@item.Id"
+                           asp-action="Delete">Sil</a>
+                                </td>
+                                
+                            }
+                            else
+                            {
+                            <a asp-action="Details" asp-controller="Film" asp-route-id="@item.Id" class="card-link btn btn-info float-center">Detay</a>
+                            <a class="card-link btn btn-danger float-center">Sepete Ekle</a>
+                            }
+
+
+                        </div>
                     </div>
-                </div>
-            </div>
-        }
+                
+            }
+
+        </div>
     }
 
 
@@ -96,26 +125,12 @@
     asp-controller="Film"
     asp-route-id="@item.Id"
     asp-action="Details">Detay</a>
-    </td>
-    @if (User.IsInRole("admin"))
-    {
-    <td>
-    <a class="btn btn-outline-success"
-    asp-controller="Film"
-    asp-route-id="@item.Id"
-    asp-action="Update">Güncelle</a>
-    </td>
-    <td>
-    <a class="btn btn-outline-danger"
-    asp-controller="Film"
-    asp-route-id="@item.Id"
-    asp-action="Delete">Sil</a>
-    </td>
-    }*@
+    </td>*@
+
     @*</tr>
     }
     </tbody>
-    </table>*@
+    </table>
     @* @if (User.IsInRole("admin"))
     {
     <a class="btn btn-primary float-right" asp-action="Create">Film Ekle</a>
