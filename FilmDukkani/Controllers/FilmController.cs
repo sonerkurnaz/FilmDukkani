@@ -39,7 +39,7 @@ namespace FilmDukkani.Controllers
             var sonuc = manager.GetAll();
             return View(sonuc);
         }
-        
+
         public IActionResult Create()
         {
             var film = new FilmCreateDto();
@@ -53,22 +53,6 @@ namespace FilmDukkani.Controllers
             manager.Add(sonuc);
             context.SaveChanges();
 
-            //Fotograf foto = new Fotograf();
-
-            //string wwwrootPath = hostEnvironment.WebRootPath;
-
-            //string fileName = Path.GetFileNameWithoutExtension(createDto.PhotoUrl.FileName);
-
-            //fileName += DateTime.Now.ToString("yymmddhhmmss") + Path.GetExtension(createDto.PhotoUrl.FileName);
-            //foto.Path = Path.Combine(wwwrootPath, fileName);
-
-            //using (var fileStream = new FileStream(foto.Path, FileMode.CreateNew))
-            //{
-            //    createDto.PhotoUrl.CopyTo(fileStream);
-            //}
-
-
-
             return RedirectToAction("Index");
 
 
@@ -79,19 +63,10 @@ namespace FilmDukkani.Controllers
             Film film = context.Filmler.Find(id);
             return View(film);
         }
-        [HttpPost,ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Update(FilmUpdateDto updateDto)
         {
-            //Film film = new()
-            //{
-            //    FilmAdi = updateDto.FilmAdi,
-            //    Aciklama = updateDto.Aciklama,
-            //    Adet = updateDto.Adet,
-            //    AltYazilari = updateDto.AltYazilari,
-            //    Yonetmeni = updateDto.Yonetmeni,
-            //    Ozeti = updateDto.Ozeti,
-            //    YapimYili = updateDto.YapimYili
-            //};
+
 
             Film film = mapper.Map<Film>(updateDto);
             manager.Update(film);
@@ -117,7 +92,7 @@ namespace FilmDukkani.Controllers
 
             return View(film);
         }
-        [HttpPost,ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
             if (context.Filmler == null)

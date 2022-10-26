@@ -52,11 +52,10 @@ namespace FilmDukkani.Controllers
             IdentityRole identityRole = await roleManager.FindByIdAsync(id);
             List<AppUser> hasRole = new List<AppUser>();
             List<AppUser> hasNotRole = new List<AppUser>();
-            var list = userManager.Users.ToList(); //İşe yaramadı
+            var list = userManager.Users.ToList(); 
             foreach (AppUser user in list)
             {
-                //var list = await userManager.IsInRoleAsync(user, identityRole.Name) ? hasRole : hasNotRole;
-                //list.Add(user);
+                
                 bool sonuc = await userManager.IsInRoleAsync(user, identityRole.Name);
                 if (sonuc)
                 {
